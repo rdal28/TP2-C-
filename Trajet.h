@@ -37,7 +37,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    Trajet(const char* depart, const char * arrivee );
+    Trajet( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -55,8 +55,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    char arretDepart[50];
-    char arretArrivee[50];
+    char villeDepart[50];
+    char villeArrivee[50];
     
 };
 

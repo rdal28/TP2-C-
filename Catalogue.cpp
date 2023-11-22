@@ -33,7 +33,7 @@ void Catalogue::Afficher (  )
         cout << "Le catalogue contient les trajets suivants :" << endl;
         for(int i = 0; i < this->nbTrajetsCourant; i++)
         {
-            cout << "Trajet n°" << i+1 << " : ";
+            cout << "Trajet numéro" << i+1 << " : ";
             this->tabTrajets[i]->Afficher();
         }
     }

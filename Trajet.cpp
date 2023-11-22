@@ -35,7 +35,7 @@ void Trajet::Afficher (  )
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Trajet::Trajet(const char* depart, const char * arrivee ) 
+Trajet::Trajet() 
 // Algorithme :
 //
 
@@ -45,8 +45,11 @@ Trajet::Trajet(const char* depart, const char * arrivee )
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-strcpy(arretDepart, depart);
-strcpy(arretArrivee, arrivee);
+cout << "Veuillez saisir la ville de depart :" << endl;
+cin >> this->villeDepart;
+cout << "Veuillez saisir la ville d'arrivee :" << endl;
+cin >> this->villeArrivee;
+
 } //----- Fin de Trajet
 
 

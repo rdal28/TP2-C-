@@ -18,7 +18,6 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
-using namespace TrajetSimple;
 #include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
@@ -26,17 +25,18 @@ using namespace TrajetSimple;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Afficher (  );
+void TrajetSimple::Afficher (  )
 // Algorithme :
 //
 {
+    cout << "Trajet simple de " << this->villeDepart << " a " << this->villeArrivee << " en " << this->moyenTransport << endl;
 } //----- Fin de Méthode
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple (  )
+TrajetSimple::TrajetSimple (  )
 // Algorithme :
 //
 {
@@ -44,12 +44,13 @@ TrajetSimple (  )
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-
+cout << "Veuillez saisir le mode de transport" << endl << endl;
+cin >> this->moyenTransport;
 
 } //----- Fin de Trajet
 
 
-~TrajetSimple ( )
+TrajetSimple::~TrajetSimple ( )
 // Algorithme :
 //
 {

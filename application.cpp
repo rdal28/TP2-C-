@@ -3,6 +3,7 @@ using namespace std;
 #include <cstring>
 #include "Catalogue.h"
 #include "Trajet.h"
+#include "TrajetSimple.h"
 
 int main()
 {   
@@ -26,20 +27,18 @@ int main()
         {
             case 1:
             {   
-                cout << "Veuillez saisir la ville de depart :" << endl;
-                cin >> villeDepart;
-                cout << "Veuillez saisir la ville d'arrivee :" << endl;
-                cin >> villeArrivee;
 
-                /*cout << "Veuillez saisir :" << endl << "1 pour ajouter un trajet simple" << endl
+                cout << "Veuillez saisir :" << endl << "1 pour ajouter un trajet simple" << endl
                 << "2 pour ajouter un trajet compose" << endl << endl;
                 int choixAjout;
                 cin >> choixAjout;
                 if (choixAjout == 1)
                 {
-                    ///////////////////////////// A COMPLETER /////////////////////////////
+                    TrajetSimple * t = new TrajetSimple();
+                    catalogue.Ajouter(t);
+                    t->Afficher();
                 }
-                else if (choixAjout == 2)
+                /*else if (choixAjout == 2)
                 {
                     ///////////////////////////// A COMPLETER /////////////////////////////
                 }*/
