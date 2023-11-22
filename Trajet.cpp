@@ -15,7 +15,7 @@
 #include <iostream>
 using namespace std;
 #include <cstream>
-
+printf("hello world");
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
 using namespace Trajet;
