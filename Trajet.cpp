@@ -14,7 +14,7 @@
 
 #include <iostream>
 using namespace std;
-#include <cstream>
+#include <cstring>
 printf("hello world");
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"

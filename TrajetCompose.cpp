@@ -14,7 +14,7 @@
 
 #include <iostream>
 using namespace std;
-#include <cstream>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
