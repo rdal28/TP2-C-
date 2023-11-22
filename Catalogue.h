@@ -10,6 +10,8 @@
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
 
+#include "Trajet.h"
+
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -28,7 +30,13 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    virtual void Afficher (  );
+    void Afficher (  );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual void Ajouter ( Trajet * ptTrajet );
     // Mode d'emploi :
     //
     // Contrat :
@@ -37,7 +45,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    Catalogue ( char * depart, char * arrivee );
+    Catalogue ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -55,8 +63,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    char arretDepart[50];
-    char arretArrivee[50];
+    Trajet** tabTrajets;
+    int nbTrajetsCourant;
+    int nbTrajetsMax;
     
 };
 

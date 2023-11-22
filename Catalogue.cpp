@@ -18,40 +18,69 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
-#include "Trajet.h"
-using namespace Catalogue;
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-virtual void Afficher (  );
+void Catalogue::Afficher (  )
 {
-    //Ne pas oublier le cas où le catalogue est vide ;
+    if (this->nbTrajetsCourant == 0)
+    {
+        cout << "Le catalogue est vide" << endl << endl;
+    } else {
+        cout << "Le catalogue contient les trajets suivants :" << endl;
+        for(int i = 0; i < this->nbTrajetsCourant; i++)
+        {
+            cout << "Trajet n°" << i+1 << " : ";
+            this->tabTrajets[i]->Afficher();
+        }
+    }
 
 } //----- Fin de Méthode
 
+void Catalogue::Ajouter ( Trajet * ptTrajet )
+{
+    
+    if(this->nbTrajetsCourant == this->nbTrajetsMax-1)
+    {   
+        this->nbTrajetsMax *= 2;
+        Trajet ** newTab = new Trajet*[this->nbTrajetsMax];
+        memcpy(newTab, this->tabTrajets, this->nbTrajetsMax*sizeof(Trajet*));
+        delete[] this->tabTrajets;
+        this->tabTrajets = newTab;
+    }
 
+    this->tabTrajets[this->nbTrajetsCourant] = ptTrajet;
+    this->nbTrajetsCourant++;
+
+} //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Catalogue ( char * depart, char * arrivee ) : arretDepart(depart), arretArrivee(arrivee)
+Catalogue::Catalogue ( )
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
 
+this->nbTrajetsCourant = 0;
+this->nbTrajetsMax = 10;
+this->tabTrajets = new Trajet*[this->nbTrajetsMax];
+
 } //----- Fin de Catalogue
 
 
-~Catalogue ( )
+Catalogue::~Catalogue ( )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
+
+delete[] this->tabTrajets;
 } //----- Fin de ~Catalogue
 
 

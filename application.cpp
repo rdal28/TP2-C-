@@ -1,23 +1,23 @@
 #include <iostream>
 using namespace std;
 #include <cstring>
-#include "TrajetSimple.h"
-#include "TrajetCompose.h"
 #include "Catalogue.h"
+#include "Trajet.h"
 
 int main()
 {   
-    cout << "Initialisation de l'application" << endl << endl << "--------------------------------" << endl << "Auteurs : Dalaoui Riad, Chaouki Youssef, Chikhi Djalil et Hanader Rayan" << endl << endl;
+    cout << endl << "Initialisation de l'application" << endl << endl << "--------------------------------" << endl << "Auteurs : Dalaoui Riad, Chaouki Youssef, Chikhi Djalil et Hanader Rayan" << endl << endl;
     cout << "Bienvenue dans l'application de gestion de trajets" << endl << endl;
     Catalogue catalogue;
     
-    cout << "Veuillez saisir :" << endl << "1 pour ajouter un trajet au catalogue" << endl
-    << "2 pour afficher le catalogue" << endl << "3 pour rechercher un trajet" << endl << "4 pour quitter l'application" << endl << endl;
-
-    int choix;
-    cin >> choix;
+    int choix=0;
     while (choix != 4)
     {   
+
+        cout << "--------------------------------   " << "Veuillez saisir :" << endl << "1 pour ajouter un trajet au catalogue" << endl
+        << "2 pour afficher le catalogue" << endl << "3 pour rechercher un trajet" << endl << "4 pour quitter l'application" << endl << endl;
+
+        cin >> choix;
 
         char * villeDepart = new char[50];
         char * villeArrivee = new char[50];
@@ -31,7 +31,7 @@ int main()
                 cout << "Veuillez saisir la ville d'arrivee :" << endl;
                 cin >> villeArrivee;
 
-                cout << "Veuillez saisir :" << endl << "1 pour ajouter un trajet simple" << endl
+                /*cout << "Veuillez saisir :" << endl << "1 pour ajouter un trajet simple" << endl
                 << "2 pour ajouter un trajet compose" << endl << endl;
                 int choixAjout;
                 cin >> choixAjout;
@@ -42,15 +42,19 @@ int main()
                 else if (choixAjout == 2)
                 {
                     ///////////////////////////// A COMPLETER /////////////////////////////
-                }
+                }*/
+
+
+                break;
             }
 
             case 2:
             {
-                catalogue.Afficher(); ////////// VERIFIER CATALOGUE VIDE DANS LA METHODE AFFICHER ///////////
+                catalogue.Afficher();
+                break;
             }
 
-            case 3 :
+            /*case 3 :
             {
                 cout << "Veuillez saisir la ville de depart :" << endl;
                 cin >> villeDepart;
@@ -58,7 +62,8 @@ int main()
                 cin >> villeArrivee;
                 
                 catalogue.Rechercher(villeDepart, villeArrivee);
-            }
+                break;
+            }*/
         }
     }
 
