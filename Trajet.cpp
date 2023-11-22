@@ -43,19 +43,12 @@ Trajet::Trajet()
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-<<<<<<< HEAD
 
 cout << "Veuillez saisir la ville de depart :" << endl;
 cin >> this->villeDepart;
 cout << "Veuillez saisir la ville d'arrivee :" << endl;
 cin >> this->villeArrivee;
 
-=======
-cout << "Veuillez saisir la ville de depart :" << endl;
-cin >> arretDepart;
-cout << "Veuillez saisir la ville d'arrivee :" << endl;
-cin >> arretArrivee;
->>>>>>> 4d6f9ca2ce46c63fb566a3c243b8532c31379baf
 } //----- Fin de Trajet
 
 

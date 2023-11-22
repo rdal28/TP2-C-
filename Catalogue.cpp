@@ -66,7 +66,7 @@ Catalogue::Catalogue ( )
 #endif
 
 this->nbTrajetsCourant = 0;
-this->nbTrajetsMax = 10;
+this->nbTrajetsMax = TAILLE_MAX;
 this->tabTrajets = new Trajet*[this->nbTrajetsMax];
 
 } //----- Fin de Catalogue

@@ -10,6 +10,8 @@
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
 
+#define TAILLE_MAX 10
+
 #include "Trajet.h"
 
 //--------------------------------------------------- Interfaces utilisées

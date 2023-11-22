@@ -57,7 +57,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    
+    int nb_escales;
+    char *tabtrajet[3];
     
 };
 
