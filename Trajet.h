@@ -37,7 +37,11 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
+<<<<<<< HEAD
     Trajet( );
+=======
+    Trajet();
+>>>>>>> 4d6f9ca2ce46c63fb566a3c243b8532c31379baf
     // Mode d'emploi :
     //
     // Contrat :
