@@ -19,10 +19,6 @@ int main()
         << "2 pour afficher le catalogue" << endl << "3 pour rechercher un trajet" << endl << "4 pour quitter l'application" << endl << endl;
 
         cin >> choix;
-
-        char * villeDepart = new char[50];
-        char * villeArrivee = new char[50];
-
         switch (choix)
         {
             case 1:
@@ -32,6 +28,7 @@ int main()
                 << "2 pour ajouter un trajet compose" << endl << endl;
                 int choixAjout;
                 cin >> choixAjout;
+                
                 if (choixAjout == 1)
                 {
                     TrajetSimple * t = new TrajetSimple();
