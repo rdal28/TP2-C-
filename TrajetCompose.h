@@ -30,7 +30,7 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Afficher (  );
+    void TrajetCompose::Afficher (  );
     // Mode d'emploi :
     //
     // Contrat :
@@ -39,13 +39,13 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetCompose ( );
+    TrajetCompose::TrajetCompose ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    ~TrajetCompose ( );
+    TrajetCompose::~TrajetCompose ( );
     // Mode d'emploi :
     //
     // Contrat :

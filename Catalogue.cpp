@@ -18,6 +18,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
+#include "Trajet.h"
 using namespace Catalogue;
 
 //------------------------------------------------------------- Constantes
@@ -26,9 +27,9 @@ using namespace Catalogue;
 
 //----------------------------------------------------- Méthodes publiques
 virtual void Afficher (  );
-// Algorithme :
-//
 {
+    //Ne pas oublier le cas où le catalogue est vide ;
+
 } //----- Fin de Méthode
 
 
@@ -36,12 +37,11 @@ virtual void Afficher (  );
 //-------------------------------------------- Constructeurs - destructeur
 
 Catalogue ( char * depart, char * arrivee ) : arretDepart(depart), arretArrivee(arrivee)
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
+
 } //----- Fin de Catalogue
 
 

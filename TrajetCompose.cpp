@@ -18,7 +18,6 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
-using namespace TrajetCompose;
 #include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
@@ -26,7 +25,7 @@ using namespace TrajetCompose;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Afficher (  );
+void TrajetCompose::Afficher (  )
 // Algorithme :
 //
 {
@@ -36,7 +35,7 @@ void Afficher (  );
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetCompose ( )
+TrajetCompose::TrajetCompose ( )
 // Algorithme :
 //
 {
@@ -49,7 +48,7 @@ TrajetCompose ( )
 } //----- Fin de Trajet
 
 
-~TrajetCompose ( )
+TrajetCompose::~TrajetCompose ( )
 // Algorithme :
 //
 {
