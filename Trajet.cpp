@@ -41,11 +41,12 @@ Trajet::Trajet(const char* depart, const char * arrivee )
 
 {
 
-strcpy(arretDepart, depart);
-strcpy(arretArrivee, arrivee);
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
+
+strcpy(arretDepart, depart);
+strcpy(arretArrivee, arrivee);
 } //----- Fin de Trajet
 
 
