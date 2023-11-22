@@ -35,17 +35,18 @@ void Trajet::Afficher (  )
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Trajet::Trajet(const char* depart, const char * arrivee ) 
+Trajet::Trajet() 
 // Algorithme :
 //
 
 {
-
-strcpy(arretDepart, depart);
-strcpy(arretArrivee, arrivee);
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
+cout << "Veuillez saisir la ville de depart :" << endl;
+cin >> arretDepart;
+cout << "Veuillez saisir la ville d'arrivee :" << endl;
+cin >> arretArrivee;
 } //----- Fin de Trajet
 
 

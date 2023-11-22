@@ -37,7 +37,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    Trajet(const char* depart, const char * arrivee );
+    Trajet();
     // Mode d'emploi :
     //
     // Contrat :
