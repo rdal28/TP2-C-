@@ -18,27 +18,31 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
-using namespace Trajet;
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-virtual void Afficher (  );
+void Trajet::Afficher (  )
 // Algorithme :
 //
 {
+
 } //----- Fin de Méthode
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Trajet ( char * depart, char * arrivee ) : arretDepart(depart), arretArrivee(arrivee)
+Trajet::Trajet(const char* depart, const char * arrivee ) 
 // Algorithme :
 //
+
 {
+
+strcpy(arretDepart, depart);
+strcpy(arretArrivee, arrivee);
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
