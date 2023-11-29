@@ -25,12 +25,12 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-char * TrajetSimple::GetDepart ()
+const char * Trajet::GetDepart ()
 {
     return this->villeDepart;
 }
 
-char * TrajetSimple::GetArrivee ()
+const char * Trajet::GetArrivee ()
 {
     return this->villeArrivee;
 }
