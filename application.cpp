@@ -34,11 +34,12 @@ int main()
                     TrajetSimple * t = new TrajetSimple();
                     catalogue.Ajouter(t);
                     t->Afficher();
+                    cout << "Trajet ajoute au catalogue" << endl << endl;
                 }
-                /*else if (choixAjout == 2)
+                else if (choixAjout == 2)
                 {
                     ///////////////////////////// A COMPLETER /////////////////////////////
-                }*/
+                }
 
 
                 break;
