@@ -24,6 +24,17 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+
+char * TrajetSimple::GetDepart ()
+{
+    return this->villeDepart;
+}
+
+char * TrajetSimple::GetArrivee ()
+{
+    return this->villeArrivee;
+}
+
 void Trajet::Afficher (  )
 // Algorithme :
 //
