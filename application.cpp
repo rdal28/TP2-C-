@@ -4,6 +4,7 @@ using namespace std;
 #include "Catalogue.h"
 #include "Trajet.h"
 #include "TrajetSimple.h"
+//#include "TrajetCompose.h"
 
 int main()
 {   
@@ -38,7 +39,10 @@ int main()
                 }
                 else if (choixAjout == 2)
                 {
-                    ///////////////////////////// A COMPLETER /////////////////////////////
+                    /*TrajetCompose * t = new TrajetCompose();
+                    catalogue.Ajouter(t);
+                    t->Afficher();
+                    cout << "Trajet ajoute au catalogue" << endl << endl;*/
                 }
 
 
@@ -51,16 +55,17 @@ int main()
                 break;
             }
 
-            /*case 3 :
+            case 3 :
             {
-                cout << "Veuillez saisir la ville de depart :" << endl;
+                cout << "Veuillez saisir la ville dont vous voulez partir :" << endl;
+                char villeDepart[50], villeArrivee[50];
                 cin >> villeDepart;
                 cout << "Veuillez saisir la ville d'arrivee :" << endl;
                 cin >> villeArrivee;
                 
-                catalogue.Rechercher(villeDepart, villeArrivee);
+                //catalogue.Rechercher(villeDepart, villeArrivee);
                 break;
-            }*/
+            }
         }
     }
 
