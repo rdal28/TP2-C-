@@ -43,7 +43,7 @@ void TableauDynamique::Ajouter ( Trajet * ptTrajet )
 
 } //----- Fin de Méthode
 
-const Trajet* TableauDynamique::GetTrajet ( int i )
+Trajet* TableauDynamique::GetTrajet ( int i )
 {
     return this->tabDynamique[i];
 }
@@ -56,7 +56,7 @@ const int TableauDynamique::GetNbTrajetsCourant ( )
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TableauDynamique::TableauDynamique(int tabSize) 
+TableauDynamique::TableauDynamique(int tabSizeInit) 
 // Algorithme :
 //
 
@@ -66,7 +66,7 @@ TableauDynamique::TableauDynamique(int tabSize)
 #endif
 
 this->nbTrajetsCourant = 0;
-this->nbTrajetsMax = tabSize;
+this->nbTrajetsMax = tabSizeInit;
 this->tabDynamique = new Trajet*[this->nbTrajetsMax];
 
 } //----- Fin de Trajet
@@ -83,6 +83,7 @@ TableauDynamique::~TableauDynamique ( )
 
 for(int i = 0; i < this->nbTrajetsCourant; i++)
 {
+    this->tabDynamique[i]->~Trajet();
     delete this->tabDynamique[i];
 }
 delete[] this->tabDynamique;

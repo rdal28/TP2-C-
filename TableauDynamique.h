@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <TableauDynamique> (fichier TableauDynamique.h) ----------------
-#if ! defined ( TRAJET_H )
+#if ! defined ( TRAJETDYNAMIQUE_H )
 #define TABLEAUDYNAMIQUE_H
 
 
@@ -39,13 +39,13 @@ public:
     // Contrat :
     //
 
-    const Trajet* GetTrajet ( int i );
+    Trajet* GetTrajet ( int i );
 
     const int GetNbTrajetsCourant ( );
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TableauDynamique( int tabSize);
+    TableauDynamique( int tabSizeInit );
     // Mode d'emploi :
     //
     // Contrat :
