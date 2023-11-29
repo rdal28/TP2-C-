@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <TableauDynamique> (fichier TableauDynamique.h) ----------------
-#if ! defined ( TRAJETDYNAMIQUE_H )
+#if ! defined ( TABLEAUDYNAMIQUE_H )
 #define TABLEAUDYNAMIQUE_H
 
 

@@ -9,8 +9,10 @@
 //---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
 #if ! defined ( TRAJETCOMPOSE_H )
 #define TRAJETCOMPOSE_H
-
+#define TAILLE_MAX_INIT 10
 #include "Trajet.h"
+#include "TrajetSimple.h"
+#include "TableauDynamique.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -30,7 +32,7 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void TrajetCompose::Afficher (  );
+    void Afficher (  );
     // Mode d'emploi :
     //
     // Contrat :
@@ -39,13 +41,13 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetCompose::TrajetCompose ( );
+    TrajetCompose ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    TrajetCompose::~TrajetCompose ( );
+    ~TrajetCompose ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -57,8 +59,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    
-    
+    int nbEscales;
+    TableauDynamique tabDynamique = TableauDynamique(TAILLE_MAX_INIT);
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetCompose>

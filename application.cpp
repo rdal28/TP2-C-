@@ -4,7 +4,8 @@ using namespace std;
 #include "Catalogue.h"
 #include "Trajet.h"
 #include "TrajetSimple.h"
-//#include "TrajetCompose.h"
+#include "TrajetCompose.h"
+#include "TableauDynamique.h"
 
 int main()
 {   
@@ -20,6 +21,7 @@ int main()
         << "2 pour afficher le catalogue" << endl << "3 pour rechercher un trajet" << endl << "4 pour quitter l'application" << endl << endl;
 
         cin >> choix;
+        cout << endl << endl << endl;
         switch (choix)
         {
             case 1:
@@ -34,15 +36,13 @@ int main()
                 {
                     TrajetSimple * t = new TrajetSimple();
                     catalogue.Ajouter(t);
-                    t->Afficher();
-                    cout << "Trajet ajoute au catalogue" << endl << endl;
+                    cout << "Trajet ajoute au catalogue avec succes" << endl << endl;
                 }
                 else if (choixAjout == 2)
                 {
-                    /*TrajetCompose * t = new TrajetCompose();
+                    TrajetCompose * t = new TrajetCompose();
                     catalogue.Ajouter(t);
-                    t->Afficher();
-                    cout << "Trajet ajoute au catalogue" << endl << endl;*/
+                    cout << "Trajet ajoute au catalogue avec succes" << endl << endl;
                 }
 
 

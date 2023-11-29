@@ -35,7 +35,7 @@ void Catalogue::Afficher (  )
         cout << "Le catalogue contient les trajets suivants :" << endl;
         for(int i = 0; i < nbTrajetsCourant; i++)
         {
-            cout << "Trajet numéro" << i+1 << " : ";
+            cout << "Trajet numero" << i+1 << " : ";
             this->tabDynamique.GetTrajet(i)->Afficher();
         }
     }
@@ -52,10 +52,10 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 void Catalogue::Rechercher (char* VilleA, char* VilleB)
 {
 
-    int nbrt = this->tabDynamique->nbTrajetsCourant;
+    cout << "Voici les trajets qui correspondent a votre recherche :" << endl << endl;
+    int nbrt = this->tabDynamique.GetNbTrajetsCourant();
     for(int i= 0; i<nbrt; i++){
-        if(this->tabDynamique[i]->GetArrivee()==VilleA 
-        && this->tabDynamique[i]->GetDepart()==VilleB) this->tabDynamique[i]->Afficher(); 
+        if(this->tabDynamique.GetTrajet(i)->GetArrivee()==VilleA && this->tabDynamique.GetTrajet(i)->GetDepart()==VilleB) this->tabDynamique.GetTrajet(i)->Afficher(); 
     }
 
 } //----- Fin de Méthode
