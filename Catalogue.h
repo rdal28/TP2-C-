@@ -39,6 +39,12 @@ public:
     // Contrat :
     //
 
+    void Rechercher (char*, char*);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual void Ajouter ( Trajet * ptTrajet );
     // Mode d'emploi :
     //

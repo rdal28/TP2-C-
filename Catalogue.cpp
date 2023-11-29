@@ -49,6 +49,17 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 
 } //----- Fin de Méthode
 
+void Catalogue::Rechercher (char* VilleA, char* VilleB)
+{
+
+    int nbrt = this->tabDynamique->nbTrajetsCourant;
+    for(int i= 0; i<nbrt; i++){
+        if(this->tabDynamique[i]->GetArrivee()==VilleA 
+        && this->tabDynamique[i]->GetDepart()==VilleB) this->tabDynamique[i]->Afficher(); 
+    }
+
+} //----- Fin de Méthode
+
 //-------------------------------------------- Constructeurs - destructeur
 
 Catalogue::Catalogue ( )
