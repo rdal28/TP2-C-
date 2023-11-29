@@ -25,16 +25,18 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Catalogue::Afficher (  )
-{
-    if (this->nbTrajetsCourant == 0)
+{   
+    int nbTrajetsCourant = this->tabDynamique.GetNbTrajetsCourant();
+
+    if (nbTrajetsCourant == 0)
     {
         cout << "Le catalogue est vide" << endl << endl;
     } else {
         cout << "Le catalogue contient les trajets suivants :" << endl;
-        for(int i = 0; i < this->nbTrajetsCourant; i++)
+        for(int i = 0; i < nbTrajetsCourant; i++)
         {
             cout << "Trajet numéro" << i+1 << " : ";
-            this->tabTrajets[i]->Afficher();
+            this->tabDynamique.GetTrajet(i)->Afficher();
         }
     }
 
@@ -42,18 +44,8 @@ void Catalogue::Afficher (  )
 
 void Catalogue::Ajouter ( Trajet * ptTrajet )
 {
-    
-    if(this->nbTrajetsCourant == this->nbTrajetsMax-1)
-    {   
-        this->nbTrajetsMax *= 2;
-        Trajet ** newTab = new Trajet*[this->nbTrajetsMax];
-        memcpy(newTab, this->tabTrajets, this->nbTrajetsMax*sizeof(Trajet*));
-        delete[] this->tabTrajets;
-        this->tabTrajets = newTab;
-    }
 
-    this->tabTrajets[this->nbTrajetsCourant] = ptTrajet;
-    this->nbTrajetsCourant++;
+    this->tabDynamique.Ajouter(ptTrajet);
 
 } //----- Fin de Méthode
 
@@ -64,10 +56,6 @@ Catalogue::Catalogue ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-
-this->nbTrajetsCourant = 0;
-this->nbTrajetsMax = TAILLE_MAX;
-this->tabTrajets = new Trajet*[this->nbTrajetsMax];
 
 } //----- Fin de Catalogue
 
@@ -80,7 +68,8 @@ Catalogue::~Catalogue ( )
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
 
-delete[] this->tabTrajets;
+this->tabDynamique.~TableauDynamique();
+
 } //----- Fin de ~Catalogue
 
 

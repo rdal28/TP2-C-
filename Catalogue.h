@@ -10,9 +10,10 @@
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
 
-#define TAILLE_MAX 10
+#define TAILLE_MAX_INIT 10
 
-#include "Trajet.h"
+
+#include "TableauDynamique.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -65,10 +66,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    Trajet** tabTrajets;
-    int nbTrajetsCourant;
-    int nbTrajetsMax;
-    
+    TableauDynamique tabDynamique = TableauDynamique(TAILLE_MAX_INIT);
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>
