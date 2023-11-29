@@ -36,7 +36,7 @@ public:
     // Contrat :
     //
 
-    const char* GetTrajet ( );
+    const char* GetTransport ( );
 
 //-------------------------------------------- Constructeurs - destructeur
 

@@ -26,7 +26,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-char * TrajetSimple::GetTransport ()
+const char * TrajetSimple::GetTransport ()
 {
     return this->moyenTransport;
 }
