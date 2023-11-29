@@ -33,7 +33,8 @@ public:
     //
     // Contrat :
     //
-
+    const char* GetArrivee ();
+    const char* GetDepart ();
 
 //-------------------------------------------- Constructeurs - destructeur
 

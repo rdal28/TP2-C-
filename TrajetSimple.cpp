@@ -25,6 +25,12 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+
+char * TrajetSimple::GetTransport ()
+{
+    return this->moyenTransport;
+}
+
 void TrajetSimple::Afficher (  )
 // Algorithme :
 //

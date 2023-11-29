@@ -36,10 +36,11 @@ public:
     // Contrat :
     //
 
+    const char* GetTrajet ( );
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetSimple ( );
+    TrajetSimple();
     // Mode d'emploi :
     //
     // Contrat :
