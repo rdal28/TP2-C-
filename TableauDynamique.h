@@ -10,7 +10,6 @@
 #if ! defined ( TRAJET_H )
 #define TABLEAUDYNAMIQUE_H
 
-#define TAILLE_MAX_INIT 10
 
 #include "Trajet.h"
 
@@ -46,7 +45,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TableauDynamique( );
+    TableauDynamique( int tabSize);
     // Mode d'emploi :
     //
     // Contrat :

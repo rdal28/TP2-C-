@@ -56,7 +56,7 @@ const int TableauDynamique::GetNbTrajetsCourant ( )
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TableauDynamique::TableauDynamique() 
+TableauDynamique::TableauDynamique(int tabSize) 
 // Algorithme :
 //
 
@@ -66,7 +66,7 @@ TableauDynamique::TableauDynamique()
 #endif
 
 this->nbTrajetsCourant = 0;
-this->nbTrajetsMax = TAILLE_MAX_INIT;
+this->nbTrajetsMax = tabSize;
 this->tabDynamique = new Trajet*[this->nbTrajetsMax];
 
 } //----- Fin de Trajet
