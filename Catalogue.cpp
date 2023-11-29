@@ -35,7 +35,7 @@ void Catalogue::Afficher (  )
         cout << "Le catalogue contient les trajets suivants :" << endl;
         for(int i = 0; i < nbTrajetsCourant; i++)
         {
-            cout << "Trajet numéro" << i+1 << " : ";
+            cout << "Trajet numero" << i+1 << " : ";
             this->tabDynamique.GetTrajet(i)->Afficher();
         }
     }
