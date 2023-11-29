@@ -52,10 +52,9 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 void Catalogue::Rechercher (char* VilleA, char* VilleB)
 {
 
-    int nbrt = this->tabDynamique->nbTrajetsCourant;
+    int nbrt = this->tabDynamique.GetNbTrajetsCourant();
     for(int i= 0; i<nbrt; i++){
-        if(this->tabDynamique[i]->GetArrivee()==VilleA 
-        && this->tabDynamique[i]->GetDepart()==VilleB) this->tabDynamique[i]->Afficher(); 
+        if(this->tabDynamique.GetTrajet(i)->GetArrivee()==VilleA && this->tabDynamique.GetTrajet(i)->GetDepart()==VilleB) this->tabDynamique.GetTrajet(i)->Afficher(); 
     }
 
 } //----- Fin de Méthode
