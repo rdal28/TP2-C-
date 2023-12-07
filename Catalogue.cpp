@@ -15,6 +15,7 @@
 #include <iostream>
 using namespace std;
 #include <cstring>
+#include <typeinfo>
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -49,14 +50,34 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 
 } //----- Fin de Méthode
 
-void Catalogue::Rechercher (char* VilleA, char* VilleB)
+void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 {
 
-    cout << "Voici les trajets qui correspondent a votre recherche :" << endl << endl;
+    cout << "Voici les trajets qui correspondent a votre recherche :" << endl;
     int nbrt = this->tabDynamique.GetNbTrajetsCourant();
+
+
     for(int i= 0; i<nbrt; i++){
-        if(this->tabDynamique.GetTrajet(i)->GetArrivee()==VilleA && this->tabDynamique.GetTrajet(i)->GetDepart()==VilleB) this->tabDynamique.GetTrajet(i)->Afficher(); 
+        Trajet * t = this->tabDynamique.GetTrajet(i);
+
+        if(!strcmp(t->GetArrivee(), VilleB) && !strcmp(t->GetDepart(), VilleA)){ // Considère que A vers B et pas B vers A mais on peut changer ça
+            t->Afficher();
+        } else if (typeid(*t) == typeid(TrajetCompose)) { // CODER ICI LA RECHERCHE D'UN TRAJET SIMPLE DANS LES TRAJETS COMPOSES
+            int nbrtC = t->GetTableau().GetNbTrajetsCourant();
+            for(int i = 0; i<nbrtC; i++){
+                Trajet* ts = t->GetTableau().GetTrajet(i);
+                if(!strcmp(ts->GetArrivee(), VilleB) && !strcmp(ts->GetDepart(), VilleA)){
+                    ts->Afficher();
+                }
+            } 
+        }
     }
+
+} //----- Fin de Méthode
+
+
+void Catalogue::RechercheComplexe (char* VilleA, char* VilleB)
+{
 
 } //----- Fin de Méthode
 

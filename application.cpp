@@ -63,7 +63,9 @@ int main()
                 cout << "Veuillez saisir la ville d'arrivee :" << endl;
                 cin >> villeArrivee;
                 
-                //catalogue.Rechercher(villeDepart, villeArrivee);
+                catalogue.RechercheSimple(villeDepart, villeArrivee);
+
+                cout << endl << endl << endl;
                 break;
             }
         }

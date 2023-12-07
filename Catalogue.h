@@ -14,6 +14,7 @@
 
 
 #include "TableauDynamique.h"
+#include "TrajetCompose.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -39,7 +40,13 @@ public:
     // Contrat :
     //
 
-    void Rechercher (char*, char*);
+    void RechercheSimple (char*, char*);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void RechercheComplexe (char*, char*);
     // Mode d'emploi :
     //
     // Contrat :

@@ -93,3 +93,12 @@ rechercher
 
 
 	
+
+
+
+
+
+QUESTION IMPORTANTE EST-CE QUE UN TRAJET PEUT ETRE EFFECTUé EN ALLER ET EN RETOUR ?
+Genre pour la recherche on dmd arret de depart (A) arret d'arrivée (B) et on print A->B
+ou bien on demande juste les deux arrets et on print B->A ou A->B
+DMD A RAYAN SI PAS COMPRIS JE REFORMULE IRL 

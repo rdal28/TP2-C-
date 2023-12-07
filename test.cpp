@@ -13,7 +13,7 @@ int main(){
     td->Ajouter(t);
     td->Ajouter(t);
     c->Ajouter(td);
-    cout << c->Rechercher("Lyon", "M") << endl;
+    cout << c->RechercheSimple("Lyon", "M") << endl;
     cout << td->GetTrajet(1) << endl;
     cout << td->GetTrajet(2) << endl;
 

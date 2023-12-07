@@ -1,5 +1,5 @@
 # List of source files
-SRCS = application.cpp Catalogue.cpp TrajetSimple.cpp Trajet.cpp
+SRCS = application.cpp Catalogue.cpp TrajetSimple.cpp Trajet.cpp TableauDynamique.cpp TrajetCompose.cpp
 
 # List of object files (generated during compilation)
 OBJS = $(SRCS:.cpp=.o)

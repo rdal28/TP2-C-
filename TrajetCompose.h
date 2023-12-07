@@ -38,6 +38,8 @@ public:
     // Contrat :
     //
 
+    const TableauDynamique GetTableau (  );
+
 
 //-------------------------------------------- Constructeurs - destructeur
 

@@ -38,6 +38,13 @@ void TrajetCompose::Afficher (  )
     }
 } //----- Fin de Méthode
 
+const TableauDynamique TrajetCompose::GetTableau (  )
+// Algorithme :
+//
+{
+    return this->tabDynamique;
+} //----- Fin de Méthode
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
