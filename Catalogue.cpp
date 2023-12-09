@@ -60,26 +60,72 @@ void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
     for(int i= 0; i<nbrt; i++){
         Trajet * t = this->tabDynamique.GetTrajet(i);
 
-        if(!strcmp(t->GetArrivee(), VilleB) && !strcmp(t->GetDepart(), VilleA)){ // Considère que A vers B et pas B vers A mais on peut changer ça
+        if (!strcmp(t->GetArrivee(), VilleB) && !strcmp(t->GetDepart(), VilleA)) {
             t->Afficher();
-        } else if (typeid(*t) == typeid(TrajetCompose)) { // CODER ICI LA RECHERCHE D'UN TRAJET SIMPLE DANS LES TRAJETS COMPOSES
-            int nbrtC = t->GetTableau().GetNbTrajetsCourant();
-            for(int i = 0; i<nbrtC; i++){
-                Trajet* ts = t->GetTableau().GetTrajet(i);
-                if(!strcmp(ts->GetArrivee(), VilleB) && !strcmp(ts->GetDepart(), VilleA)){
-                    ts->Afficher();
-                }
-            } 
+        } else if (typeid(*t) == typeid(TrajetCompose)) {
+            TrajetCompose* trajetCompose = dynamic_cast<TrajetCompose*>(t);
+            TrajetSimple* ts = (TrajetSimple*) trajetCompose->RechercheDansTrajetCompose(VilleA, VilleB);
+            if (ts != nullptr) {
+                ts->Afficher();
+            }
         }
     }
 
 } //----- Fin de Méthode
 
 
-void Catalogue::RechercheComplexe (char* VilleA, char* VilleB)
-{
+void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, Trajet* currentPath[], int pathLength, bool& found) {
+    // Si le trajet actuel est celui que nous recherchons, affichez le chemin
+    if (!strcmp(currentPath[pathLength - 1]->GetArrivee(), VilleB)) {
+        for (int i = 0; i < pathLength; i++) {
+            currentPath[i]->Afficher();
+        }
+        found = true;
+        return;
+    }
 
-} //----- Fin de Méthode
+    // Parcourez tous les trajets pour trouver le prochain trajet possible
+    for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
+        Trajet* nextTrajet = tabDynamique.GetTrajet(i);
+
+        // Vérifiez si le prochain trajet est relié au dernier trajet dans le chemin actuel
+        if (!strcmp(currentPath[pathLength - 1]->GetArrivee(), nextTrajet->GetDepart())) {
+            // Ajoutez ce trajet au chemin actuel
+            currentPath[pathLength] = nextTrajet;
+
+            // Appelez récursivement la recherche pour explorer ce chemin
+            BruteForceSearch(VilleA, VilleB, currentPath, pathLength + 1, found);
+
+            // Si le trajet a été trouvé, arrêtez la recherche
+            if (found) {
+                return;
+            }
+        }
+    }
+}
+
+void Catalogue::RechercheComplexe(const char* VilleA, const char* VilleB) {
+    const int MAX_PATH_LENGTH = 100; // Taille maximale du chemin
+    Trajet* currentPath[MAX_PATH_LENGTH]; // Tableau pour stocker le chemin actuel
+    bool found = false; // Indicateur de trajet trouvé
+
+    // Parcourez tous les trajets pour démarrer la recherche
+    for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
+        Trajet* startTrajet = tabDynamique.GetTrajet(i);
+
+        // Si le départ correspond à VilleA, commencez la recherche à partir de ce trajet
+        if (!strcmp(startTrajet->GetDepart(), VilleA)) {
+            currentPath[0] = startTrajet;
+            BruteForceSearch(VilleA, VilleB, currentPath, 1, found);
+            if (found) {
+                break;
+            }
+        } else {
+            cout << "Aucun trajet trouvé" << endl;
+        }
+        
+    }
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 

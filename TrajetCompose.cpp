@@ -45,7 +45,14 @@ const TableauDynamique TrajetCompose::GetTableau (  )
     return this->tabDynamique;
 } //----- Fin de Méthode
 
-
+const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA, const char* VilleB) {
+        for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); i++) {
+            TrajetSimple* trajet = (TrajetSimple*) tabDynamique.GetTrajet(i);
+            if (!strcmp(trajet->GetArrivee(), VilleB) && !strcmp(trajet->GetDepart(), VilleA)) {
+                return trajet;
+            }
+        }
+    }
 
 //-------------------------------------------- Constructeurs - destructeur
 

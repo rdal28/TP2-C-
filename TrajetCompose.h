@@ -13,6 +13,7 @@
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TableauDynamique.h"
+#include "Catalogue.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -41,6 +42,7 @@ public:
     const TableauDynamique GetTableau (  );
 
 
+    const TrajetSimple* RechercheDansTrajetCompose(const char* VilleA, const char* VilleB);
 //-------------------------------------------- Constructeurs - destructeur
 
     TrajetCompose ( );
