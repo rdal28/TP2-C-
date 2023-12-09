@@ -29,10 +29,10 @@ void TrajetCompose::Afficher (  )
 //
 {
     cout << "Trajet compose avec ville initiale : " << this->villeDepart << " et ville finale : " << this->villeArrivee << endl;
-    cout << "Voici les sous trajets simples qui le composent :" << endl << endl;
+    cout << endl << "Voici les sous trajets simples qui le composent :" << endl << endl;
     for(int i = 0; i < this->tabDynamique.GetNbTrajetsCourant(); i++)
     {   
-        cout << "Sous trajet numero " << i+1 << " :" << endl;
+        cout << "Sous trajet numero " << i+1 << " :" << endl<<endl;
         this->tabDynamique.GetTrajet(i)->Afficher();
         cout << endl;
     }
@@ -52,6 +52,7 @@ const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA
                 return trajet;
             }
         }
+        return nullptr;
     }
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -64,12 +65,12 @@ TrajetCompose::TrajetCompose ( )
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
 
-cout << "Veuillez saisir le nombre d'escales de votre parcours, c'est-à-dire le nombre d'arrêts entre votre arrêt initial et votre arrêt final" << endl << endl;
+cout << endl << "Veuillez saisir le nombre d'escales de votre parcours, c'est a dire le nombre d'arrets entre votre arret initial et votre arret final" << endl;
 cin >> this->nbEscales;
-cout << "Votre trajet composé se sub-divise en sous trajets simples :" << endl << endl;
+cout << "Votre trajet compose se sub-divise en sous trajets simples :" << endl << endl;
 for(int i = 0; i <= this->nbEscales; i++)
 {
-    cout << "Sous trajet numéro " << i+1 << " :" << endl;
+    cout << "Sous trajet numero " << i+1 << " :" << endl<<endl;
     TrajetSimple * TS = new TrajetSimple();
     this->tabDynamique.Ajouter(TS);
     cout << endl;

@@ -33,10 +33,10 @@ void Catalogue::Afficher (  )
     {
         cout << "Le catalogue est vide" << endl << endl;
     } else {
-        cout << "Le catalogue contient les trajets suivants :" << endl;
+        cout << "Le catalogue contient les trajets suivants :" << endl <<endl;
         for(int i = 0; i < nbTrajetsCourant; i++)
         {
-            cout << "Trajet numero" << i+1 << " : ";
+            cout << "Trajet numero " << i+1 << " : ";
             this->tabDynamique.GetTrajet(i)->Afficher();
         }
     }
@@ -53,22 +53,31 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 {
 
-    cout << "Voici les trajets qui correspondent a votre recherche :" << endl;
+    
     int nbrt = this->tabDynamique.GetNbTrajetsCourant();
+    bool trajetTrouve = false;
 
 
     for(int i= 0; i<nbrt; i++){
         Trajet * t = this->tabDynamique.GetTrajet(i);
 
         if (!strcmp(t->GetArrivee(), VilleB) && !strcmp(t->GetDepart(), VilleA)) {
+            cout << endl << "Voici les trajets qui correspondent a votre recherche :" << endl;
             t->Afficher();
+            trajetTrouve = true;
         } else if (typeid(*t) == typeid(TrajetCompose)) {
             TrajetCompose* trajetCompose = dynamic_cast<TrajetCompose*>(t);
             TrajetSimple* ts = (TrajetSimple*) trajetCompose->RechercheDansTrajetCompose(VilleA, VilleB);
             if (ts != nullptr) {
+                cout << endl <<"Voici les trajets qui correspondent a votre recherche :" << endl;
                 ts->Afficher();
+                trajetTrouve = true;
             }
         }
+    }
+
+    if (!trajetTrouve) {
+        cout << endl << "Aucun trajet trouve de " << VilleA << " a " << VilleB << ".";
     }
 
 } //----- Fin de Méthode
@@ -121,7 +130,7 @@ void Catalogue::RechercheComplexe(const char* VilleA, const char* VilleB) {
                 break;
             }
         } else {
-            cout << "Aucun trajet trouvé" << endl;
+            cout << "Aucun trajet trouve" << endl;
         }
         
     }

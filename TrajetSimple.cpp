@@ -35,7 +35,7 @@ void TrajetSimple::Afficher (  )
 // Algorithme :
 //
 {
-    cout << "Trajet simple de " << this->villeDepart << " a " << this->villeArrivee << " en " << this->moyenTransport << endl;
+    cout << "Trajet simple de " << this->villeDepart << " a " << this->villeArrivee << " en " << this->moyenTransport << endl << endl;
 } //----- Fin de Méthode
 
 
@@ -50,7 +50,7 @@ TrajetSimple::TrajetSimple (  )
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-cout << "Veuillez saisir le mode de transport" << endl << endl;
+cout << endl<< "Veuillez saisir le mode de transport" << endl;
 cin >> this->moyenTransport;
 
 } //----- Fin de Trajet

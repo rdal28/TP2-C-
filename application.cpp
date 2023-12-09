@@ -17,34 +17,42 @@ int main()
     while (choix != 4)
     {   
 
-        cout << "--------------------------------   " << "Veuillez saisir :" << endl << "1 pour ajouter un trajet au catalogue" << endl
-        << "2 pour afficher le catalogue" << endl << "3 pour rechercher un trajet" << endl << "4 pour quitter l'application" << endl << endl;
+        cout << "--------------------------------   " << endl << endl << "Veuillez saisir :" << endl << endl << "\t 1 pour ajouter un trajet au catalogue" << endl
+        << "\t 2 pour afficher le catalogue" << endl << "\t 3 pour rechercher un trajet" << endl << "\t 4 pour quitter l'application" << endl << endl;
 
         cin >> choix;
-        cout << endl << endl << endl;
+        cout << endl;
+
+        if (choix !=1 && choix !=2 && choix !=3 && choix !=4)
+                    cout << endl << "Veuillez choisir un chiffre entre 1 et 4" << endl << endl;
+
         switch (choix)
         {
             case 1:
             {   
 
-                cout << "Veuillez saisir :" << endl << "1 pour ajouter un trajet simple" << endl
-                << "2 pour ajouter un trajet compose" << endl << endl;
+                cout << "Veuillez saisir :" << endl << endl << "\t 1 pour ajouter un trajet simple" << endl
+                << "\t 2 pour ajouter un trajet compose" << endl << "\t 3 pour revenir au menu precedent" << endl << endl;
                 int choixAjout;
                 cin >> choixAjout;
+
+                
                 
                 if (choixAjout == 1)
                 {
                     TrajetSimple * t = new TrajetSimple();
                     catalogue.Ajouter(t);
-                    cout << "Trajet ajoute au catalogue avec succes" << endl << endl;
+                    cout << endl << "Trajet ajoute au catalogue avec succes !" << endl << endl;
                 }
                 else if (choixAjout == 2)
                 {
                     TrajetCompose * t = new TrajetCompose();
                     catalogue.Ajouter(t);
-                    cout << "Trajet ajoute au catalogue avec succes" << endl << endl;
+                    cout << endl << "Trajet ajoute au catalogue avec succes !" << endl << endl;
                 }
 
+                else if (choixAjout==3)
+                    break;
 
                 break;
             }
@@ -60,7 +68,7 @@ int main()
                 cout << "Veuillez saisir la ville dont vous voulez partir :" << endl;
                 char villeDepart[50], villeArrivee[50];
                 cin >> villeDepart;
-                cout << "Veuillez saisir la ville d'arrivee :" << endl;
+                cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
                 cin >> villeArrivee;
                 
                 catalogue.RechercheSimple(villeDepart, villeArrivee);
@@ -70,6 +78,8 @@ int main()
             }
         }
     }
+
+    cout << "Merci d'avoir consulte notre application de gestion de trajets !" << endl;
 
     return 0;
 }

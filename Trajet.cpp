@@ -55,9 +55,9 @@ Trajet::Trajet()
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-cout << "Veuillez saisir la ville de depart :" << endl;
+cout << endl << "Veuillez saisir la ville de depart :" << endl;
 cin >> this->villeDepart;
-cout << "Veuillez saisir la ville d'arrivee :" << endl;
+cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
 cin >> this->villeArrivee;
 
 } //----- Fin de Trajet
