@@ -86,13 +86,6 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
-
-for(int i = 0; i < this->tabDynamique.GetNbTrajetsCourant(); i++)
-{
-    this->tabDynamique.GetTrajet(i)->~Trajet();
-    delete this->tabDynamique.GetTrajet(i);
-}
-this->tabDynamique.~TableauDynamique();
 } //----- Fin de ~Trajet
 
 

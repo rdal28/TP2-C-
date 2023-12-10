@@ -83,7 +83,6 @@ TableauDynamique::~TableauDynamique ( )
 
 for(int i = 0; i < this->nbTrajetsCourant; i++)
 {
-    this->tabDynamique[i]->~Trajet();
     delete this->tabDynamique[i];
 }
 delete[] this->tabDynamique;

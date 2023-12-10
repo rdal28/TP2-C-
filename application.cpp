@@ -54,6 +54,10 @@ int main()
                 else if (choixAjout==3)
                     break;
 
+                else 
+                {   
+                    cout << endl << "Veuillez choisir un chiffre entre 1 et 3" << endl << endl;
+                }
                 break;
             }
 
@@ -80,6 +84,7 @@ int main()
     }
 
     cout << "Merci d'avoir consulte notre application de gestion de trajets !" << endl;
+
 
     return 0;
 }
