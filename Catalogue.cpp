@@ -113,7 +113,7 @@ void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, Trajet*
     }
 }
 
-void Catalogue::RechercheComplexe(const char* VilleA, const char* VilleB) {
+void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
     const int MAX_PATH_LENGTH = 100; // Taille maximale du chemin
     Trajet* currentPath[MAX_PATH_LENGTH]; // Tableau pour stocker le chemin actuel
     bool found = false; // Indicateur de trajet trouvé

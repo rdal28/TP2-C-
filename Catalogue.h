@@ -49,7 +49,7 @@ public:
     void BruteForceSearch (const char*, const char*, Trajet* currentPath[], int pathLength, bool& found);
 
 
-    void RechercheComplexe (const char*, const char*);
+    void RechercheAvancee (const char*, const char*);
     // Mode d'emploi :
     //
     // Contrat :
