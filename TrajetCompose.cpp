@@ -74,7 +74,7 @@ cout << endl << "Quelle est la ville d'arrivée finale de ce trajet" << endl;
 cin >> final_end;
 this->nbEscales = 0;
 char start[50];
-char end[50];
+char end[50]="";
 char mean[50];
     while(strcmp(end,final_end))
     {   

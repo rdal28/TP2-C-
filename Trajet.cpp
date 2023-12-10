@@ -27,6 +27,7 @@ using namespace std;
 
 const char * Trajet::GetTransport ()
 {
+    return nullptr;
 }
 
 const char * Trajet::GetDepart ()
