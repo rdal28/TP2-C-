@@ -27,15 +27,20 @@ using namespace std;
 void TrajetCompose::Afficher (  )
 // Algorithme :
 //
-{
-    cout << "Trajet compose avec ville initiale : " << this->villeDepart << " et ville finale : " << this->villeArrivee << endl;
-    cout << endl << "Voici les sous trajets simples qui le composent :" << endl << endl;
+{   
+
     for(int i = 0; i < this->tabDynamique.GetNbTrajetsCourant(); i++)
     {   
-        cout << "Sous trajet numero " << i+1 << " :" << endl<<endl;
-        this->tabDynamique.GetTrajet(i)->Afficher();
-        cout << endl;
+        Trajet * trajet_i = this->tabDynamique.GetTrajet(i);
+        if(i==0){
+            cout << " " << trajet_i->GetDepart() << " ------ " << "( " << trajet_i->GetTransport() << " )"<< " ------> " << trajet_i->GetArrivee();
+        }else{
+            cout << " ------ " << "( " << trajet_i->GetTransport() << " )"<< " ------> " << trajet_i->GetArrivee();
+        }
+        
+
     }
+    cout<< endl;
 } //----- Fin de Méthode
 
 const TableauDynamique TrajetCompose::GetTableau (  )
@@ -64,17 +69,39 @@ TrajetCompose::TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
+char final_end[50];
+cout << endl << "Quelle est la ville d'arrivée finale de ce trajet" << endl;
+cin >> final_end;
+this->nbEscales = 0;
+char start[50];
+char end[50];
+char mean[50];
+    while(strcmp(end,final_end))
+    {   
+        if(this->nbEscales==0){
+            cout << endl << "Veuillez saisir la ville de depart du trajet composé:" << endl;
+            cin >> start;
+            cout << endl << "Veuillez saisir la ville suivante:" << endl;
+            cin >> end;
+            cout << endl<< "Veuillez saisir le mode de transport:" << endl;
+            cin >> mean;
+            TrajetSimple * TS = new  TrajetSimple(start, end, mean);
+            this->tabDynamique.Ajouter(TS);
+            this->nbEscales++;
+            strcpy(this->villeArrivee, final_end);
+            strcpy(this->villeDepart, start);
+        }else{
+            strcpy(start,end);
+            cout << endl << "Veuillez saisir la ville suivante:" << endl;
+            cin >> end;
+            cout << endl<< "Veuillez saisir le mode de transport:" << endl;
+            cin >> mean;
+            TrajetSimple * TS = new TrajetSimple(start, end, mean);
+            this->tabDynamique.Ajouter(TS);
+        }
+    }
 
-cout << endl << "Veuillez saisir le nombre d'escales de votre parcours, c'est a dire le nombre d'arrets entre votre arret initial et votre arret final" << endl;
-cin >> this->nbEscales;
-cout << "Votre trajet compose se sub-divise en sous trajets simples :" << endl << endl;
-for(int i = 0; i <= this->nbEscales; i++)
-{
-    cout << "Sous trajet numero " << i+1 << " :" << endl<<endl;
-    TrajetSimple * TS = new TrajetSimple();
-    this->tabDynamique.Ajouter(TS);
-    cout << endl;
-}
+
 
 } //----- Fin de Trajet
 

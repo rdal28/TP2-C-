@@ -25,6 +25,10 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+const char * Trajet::GetTransport ()
+{
+}
+
 const char * Trajet::GetDepart ()
 {
     return this->villeDepart;
@@ -54,11 +58,6 @@ Trajet::Trajet()
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-
-cout << endl << "Veuillez saisir la ville de depart :" << endl;
-cin >> this->villeDepart;
-cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
-cin >> this->villeArrivee;
 
 } //----- Fin de Trajet
 
