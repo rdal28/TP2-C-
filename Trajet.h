@@ -33,6 +33,7 @@ public:
     //
     // Contrat :
     //
+    virtual const char * GetTransport ();
     const char* GetArrivee ();
     const char* GetDepart ();
 

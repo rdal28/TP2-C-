@@ -35,7 +35,7 @@ void TrajetSimple::Afficher (  )
 // Algorithme :
 //
 {
-    cout << "Trajet simple de " << this->villeDepart << " a " << this->villeArrivee << " en " << this->moyenTransport << endl << endl;
+    cout << " " << this->villeDepart << " ------ " << "( " << this->moyenTransport << " )"<< " ------> " <<this->villeArrivee << endl;
 } //----- Fin de Méthode
 
 
@@ -49,11 +49,20 @@ TrajetSimple::TrajetSimple (  )
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
-
+cout << endl << "Veuillez saisir la ville de depart :" << endl;
+cin >> this->villeDepart;
+cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
+cin >> this->villeArrivee;
 cout << endl<< "Veuillez saisir le mode de transport" << endl;
 cin >> this->moyenTransport;
 
 } //----- Fin de Trajet
+
+TrajetSimple::TrajetSimple ( char A[50], char B[50],char T[50] ){
+    strcpy(this->villeDepart,A);
+    strcpy(this->villeArrivee,B);
+    strcpy(moyenTransport,T);
+};
 
 
 TrajetSimple::~TrajetSimple ( )

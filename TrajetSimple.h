@@ -46,6 +46,8 @@ public:
     // Contrat :
     //
 
+    TrajetSimple ( char A[50], char B[50],char T[50] );
+
     ~TrajetSimple ( );
     // Mode d'emploi :
     //
