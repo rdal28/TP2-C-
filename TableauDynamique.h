@@ -45,6 +45,9 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
+    TableauDynamique(); //Constructeur par défaut
+
+
     TableauDynamique( int tabSizeInit );
     // Mode d'emploi :
     //

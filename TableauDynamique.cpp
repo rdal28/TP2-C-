@@ -56,6 +56,10 @@ const int TableauDynamique::GetNbTrajetsCourant ( )
 
 //-------------------------------------------- Constructeurs - destructeur
 
+TableauDynamique::TableauDynamique() {
+        // Constructeur par défaut
+    }
+
 TableauDynamique::TableauDynamique(int tabSizeInit) 
 // Algorithme :
 //
