@@ -41,11 +41,14 @@ public:
     Affiche tous les trajets du catalogue
     */
 
+    // DirectedGraph* toGraph();
+    // // Convertit le catalogue en graphe orienté pour appliqué un DFS, utilise autre bib que iostream donc laisée que pour la démo.
 
     /*DirectedGraph* toGraph();*/
     /*
     Méthode propre au DFS (bonus). Renvoie un graphe orienté représentant
-    le catalogue
+    le catalogue pour y appliquer un DFS. Utilise des libs non autorisées
+    donc laisée que pour la démonstration.
     */
 
 

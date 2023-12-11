@@ -1,3 +1,16 @@
+/*************************************************************************
+                                DirectedGraph  -  
+                             -------------------
+    début                : 22/11/2023
+    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
+    e-mail               : youssef.chaouki@insa-lyon.fr
+                           djalil.chikhi@insa-lyon.fr
+                           riad.dalaoui@insa-lyon.fr
+                           rayan.hanader@insa-lyon.fr
+*************************************************************************/
+
+//---------- Réalisation de la classe <DirectedGraph> (fichier DirectedGraph.cpp) ------------
+
 #include "DirectedGraph.h"
 
 // Constructeur
