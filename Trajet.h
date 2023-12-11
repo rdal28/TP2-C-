@@ -28,14 +28,15 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    virtual void Afficher (  );
+    virtual void Afficher (  ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
-    virtual const char * GetTransport ();
-    const char* GetArrivee ();
-    const char* GetDepart ();
+    virtual const char * GetTransport () const;
+    const char* GetArrivee () const;
+    const char* GetDepart ()const ;
+    virtual bool operator==(const Trajet& autre) const;
 
 //-------------------------------------------- Constructeurs - destructeur
 

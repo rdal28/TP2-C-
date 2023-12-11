@@ -39,11 +39,17 @@ public:
     // Contrat :
     //
 
-    Trajet* GetTrajet ( int i );
+    void Supprimer(int i);
 
-    const int GetNbTrajetsCourant ( );
+    Trajet* GetTrajet ( int i ) const;
+
+    int GetNbTrajetsCourant ( ) const;
 
 //-------------------------------------------- Constructeurs - destructeur
+
+
+    TableauDynamique ( const TableauDynamique & autre ); // Constructeur par copie
+
 
     TableauDynamique(); //Constructeur par défaut
 

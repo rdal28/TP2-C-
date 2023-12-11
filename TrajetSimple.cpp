@@ -26,17 +26,37 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-const char * TrajetSimple::GetTransport ()
+const char * TrajetSimple::GetTransport () const
 {
     return this->moyenTransport;
 }
 
-void TrajetSimple::Afficher (  )
+void TrajetSimple::Afficher (  ) const
 // Algorithme :
 //
-{
+{   
+    cout << "Entree dans Afficher de TrajetSimple" << endl;
     cout << " " << this->villeDepart << " ------ " << "( " << this->moyenTransport << " )"<< " ------> " <<this->villeArrivee << endl;
 } //----- Fin de Méthode
+
+
+
+bool TrajetSimple::operator==(const Trajet& autre) const {
+    const TrajetSimple* autreSimple = dynamic_cast<const TrajetSimple*>(&autre);
+    if (!autreSimple) {
+        return false; // Impossible de comparer un TrajetSimple avec autre chose qu'un TrajetSimple
+    }
+
+    // Comparaison des attributs pour vérifier l'égalité en utilisant les méthodes d'accès
+    if (strcmp(this->GetDepart(), autreSimple->GetDepart()) != 0 ||
+        strcmp(this->GetArrivee(), autreSimple->GetArrivee()) != 0 ||
+        strcmp(this->GetTransport(), autreSimple->GetTransport()) != 0) {
+        return false;
+    }
+
+    return true;
+}
+
 
 
 

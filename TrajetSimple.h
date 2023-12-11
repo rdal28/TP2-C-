@@ -30,13 +30,15 @@ class TrajetSimple : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Afficher ( );
+    void Afficher ( ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    const char* GetTransport ( );
+    const char* GetTransport ( ) const;
+
+    bool operator==(const Trajet& autre) const;
 
 //-------------------------------------------- Constructeurs - destructeur
 

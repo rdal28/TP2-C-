@@ -43,19 +43,50 @@ void TableauDynamique::Ajouter ( Trajet * ptTrajet )
 
 } //----- Fin de Méthode
 
-Trajet* TableauDynamique::GetTrajet ( int i )
-{
+Trajet* TableauDynamique::GetTrajet ( int i ) const
+{   
     return this->tabDynamique[i];
 }
 
-const int TableauDynamique::GetNbTrajetsCourant ( )
-{
+int TableauDynamique::GetNbTrajetsCourant ( ) const 
+{   
     return this->nbTrajetsCourant;
 }
+
+void TableauDynamique::Supprimer(int i)
+{   
+    if(i < 0 || i > this->nbTrajetsCourant)
+    {
+        cout << "Erreur : indice invalide" << endl;
+        return;
+    }
+    delete this->tabDynamique[i];
+    this->tabDynamique[i] = nullptr;
+    this->nbTrajetsCourant--;
+}
+
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
+
+TableauDynamique::TableauDynamique ( const TableauDynamique & autre )
+{
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <TableauDynamique>" << endl;
+    #endif
+
+    // Copie des attributs de l'autre objet
+    this->nbTrajetsCourant = autre.nbTrajetsCourant;
+    this->nbTrajetsMax = autre.nbTrajetsMax;
+    this->tabDynamique = new Trajet*[this->nbTrajetsMax];
+
+    // Copie des trajets
+    for (int i = 0; i < this->nbTrajetsCourant; ++i) {
+        this->tabDynamique[i] = new Trajet(*autre.tabDynamique[i]);
+    }
+}
 TableauDynamique::TableauDynamique() {
         // Constructeur par défaut
     }
@@ -84,12 +115,19 @@ TableauDynamique::~TableauDynamique ( )
     cout << "Appel au destructeur de <TableauDynamique>" << endl;
 #endif
 
+cout << "Destruction du tableau dynamique" << endl;
 
 for(int i = 0; i < this->nbTrajetsCourant; i++)
 {
     delete this->tabDynamique[i];
 }
+
+cout << "Trajets détruits" << endl;
+cout << "Destruction de l'attribut : " << endl;
 delete[] this->tabDynamique;
+cout << "Attribut détruit" << endl;
+
+cout << "Tableau dynamique détruit" << endl;
 } //----- Fin de ~TableauDynamique
 
 

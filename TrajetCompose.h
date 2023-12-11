@@ -33,16 +33,22 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Afficher (  );
+    void Afficher (  ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    const TableauDynamique GetTableau (  );
+    const TableauDynamique& GetTableau (  ) const;
+
+    int GetNbEscales (  ) const;
 
 
     const TrajetSimple* RechercheDansTrajetCompose(const char* VilleA, const char* VilleB);
+
+    bool operator==(const Trajet& autre) const;
+
+
 //-------------------------------------------- Constructeurs - destructeur
 
     TrajetCompose ( );

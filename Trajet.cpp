@@ -25,27 +25,33 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-const char * Trajet::GetTransport ()
+const char * Trajet::GetTransport () const
 {
     return nullptr;
 }
 
-const char * Trajet::GetDepart ()
-{
+const char * Trajet::GetDepart () const
+{   
     return this->villeDepart;
 }
 
-const char * Trajet::GetArrivee ()
-{
+const char * Trajet::GetArrivee () const
+{   
     return this->villeArrivee;
 }
 
-void Trajet::Afficher (  )
+void Trajet::Afficher (  ) const
 // Algorithme :
 //
 {
-
+    cout << "Entree dans Afficher de Trajet" << endl;
 } //----- Fin de Méthode
+
+ bool Trajet::operator==(const Trajet& autre) const
+ {
+
+ }
+
 
 
 

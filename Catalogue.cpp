@@ -83,91 +83,105 @@ void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 } //----- Fin de Méthode
 
 
-void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, TableauDynamique currentPath, int pathLength, bool& found) {
-    // Si le trajet actuel est celui que nous recherchons, affichez le chemin
+void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, TableauDynamique& currentPath, int pathLength, bool& found) {
+
     if (!strcmp(currentPath.GetTrajet(pathLength - 1)->GetArrivee(), VilleB)) {
         found = true;
         return;
     }
 
-    // Parcourez tous les trajets pour trouver le prochain trajet possible
     for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
+        if(tabDynamique.GetTrajet(i) == currentPath.GetTrajet(pathLength - 1)) continue;
         Trajet* nextTrajet = tabDynamique.GetTrajet(i);
 
-        // Vérifiez si le prochain trajet est relié au dernier trajet dans le chemin actuel
-        if (!strcmp(currentPath.GetTrajet(pathLength - 1)->GetArrivee(), nextTrajet->GetDepart())) {
-            // Ajoutez ce trajet au chemin actuel
-            currentPath.Ajouter(nextTrajet);
-
-            // Appelez récursivement la recherche pour explorer ce chemin
-            BruteForceSearch(VilleA, VilleB, currentPath, pathLength + 1, found);
-
-            // Si le trajet a été trouvé, arrêtez la recherche
-            if (found) {
-                return;
+        bool alreadyExists = false;
+        for(int j = 0; j < pathLength; j++) {
+            if(nextTrajet == currentPath.GetTrajet(j)) {
+                alreadyExists = true;
+                break;
             }
         }
+        
+        if (alreadyExists) continue;
+
+        if (!strcmp(currentPath.GetTrajet(pathLength - 1)->GetArrivee(), nextTrajet->GetDepart())) {
+            currentPath.Ajouter(nextTrajet);
+            BruteForceSearch(VilleA, VilleB, currentPath, pathLength + 1, found);
+            if (found) {
+                break;
+            } else 
+            {currentPath.Supprimer(pathLength - 1);} // Retour en arrière pour essayer un autre trajet
+        }
     }
+    return;
 }
 
 
-TableauDynamique Catalogue::UneReponse(Trajet* startTrajet, const char* VilleA, const char* VilleB){
+
+void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const char* VilleB, TableauDynamique& currentPath){
     
-    const int MAX_PATH_LENGTH = 3; // Longueur maximale du chemin (réalloué si nécessaire)
-    TableauDynamique currentPath(MAX_PATH_LENGTH); // Tableau pour stocker le chemin actuel
-    TableauDynamique unfoundPath(MAX_PATH_LENGTH); // Pour renvoyer un tableau vide si aucun chemin n'est trouvé
     bool found = false; // Indicateur de chemin trouvé
 
     currentPath.Ajouter(startTrajet);
     BruteForceSearch(VilleA, VilleB, currentPath, 1, found);
 
-    if (found) {
-        return currentPath;
-    } else {
-        return unfoundPath;
-    }
+    return;
 }
 
 void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
 
-    const int MAX_PATHS = 30; // Nombre maximal de chemins possibles
-    TableauDynamique paths[MAX_PATHS]; // Tableau pour stocker les chemins possibles
+    const int MAX_PATH_LENGTH = 3; // Longueur maximale du chemin (réalloué si nécessaire)
     
-
     // Parcours tous les trajets pour stocker les trajets de départ
-    Trajet* Departs[MAX_PATHS];
+    TableauDynamique Departs(this->tabDynamique.GetNbTrajetsCourant());
     int departsCount = 0;
 
     for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); i++) {
         Trajet* startTrajet = tabDynamique.GetTrajet(i);
         
-        // Retrait des doublons
-        bool alreadyExists = false;
-        for (int j = 0; j < departsCount; j++) {
-            if (!strcmp(startTrajet->GetDepart(), Departs[j]->GetDepart())) {
-                alreadyExists = true;
-                break;
+        if(!strcmp(startTrajet->GetDepart(), VilleA)) {
+            // Retrait des doublons
+            bool alreadyExists = false;
+            for (int j = 0; j < departsCount; j++) {
+                if (!strcmp(startTrajet->GetDepart(), Departs.GetTrajet(j)->GetDepart()) && !strcmp(startTrajet->GetArrivee(), Departs.GetTrajet(j)->GetArrivee())) {
+                    alreadyExists = true;
+                    break;
+                }
+            }
+            if (!alreadyExists) {
+                Departs.Ajouter(startTrajet);
+                departsCount++;
             }
         }
-        if (!alreadyExists) {
-            Departs[departsCount++] = startTrajet;
-        }
+    }
+
+    for (int i = 0; i < departsCount; i++) {
+        cout << "Trajet de depart numero " << i+1 << " : ";
+        Departs.GetTrajet(i)->Afficher();
     }
 
     // Parcours tous les trajets de départ pour trouver les chemins possibles
     for(int j=0; j<departsCount; j++){
-        Trajet* startTrajet = Departs[j];
-        paths[j] = UneReponse(startTrajet, VilleA, VilleB);
-        if (paths[j].GetNbTrajetsCourant()!=1) {
+        cout << "Itération " << j << " : " << endl;
+        Trajet* startTrajet = Departs.GetTrajet(j);
+        TableauDynamique currentPath(MAX_PATH_LENGTH); // Tableau pour stocker le chemin actuel
+        UneCombinaison(startTrajet, VilleA, VilleB, currentPath);
+        if (currentPath.GetNbTrajetsCourant()!=1) {
             cout << endl << "Un ensemble de trajets correspondant à votre recherche est :" << endl << endl;
-            for(int i=0; i<paths[j].GetNbTrajetsCourant(); i++){
-                paths[j].GetTrajet(i)->Afficher();
+            for(int i=0; i<currentPath.GetNbTrajetsCourant(); i++){
+                cout << "Trajet numero " << i+1 << " : ";
+                currentPath.GetTrajet(i)->Afficher(); // PETITE ERREUR DE MERDE A REGLER ICI 
+                cout << endl;
             }
         }
+
     }
-        
-        
-}
+
+
+    cout << endl << "Fin de la recherche avancee" << endl << endl;
+    
+    return ;
+} // GROS PROBLEME DE CETTE FONCTION : ELLE NE RENVOIE QUE LE PREMIER CHEMIN SI IL Y EN A PLUSIEURS QUI POSSIBLES A PARTIR D'UN MEME TRAJET DEPART
 
 //-------------------------------------------- Constructeurs - destructeur
 

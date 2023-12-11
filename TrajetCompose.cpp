@@ -15,6 +15,7 @@
 #include <iostream>
 using namespace std;
 #include <cstring>
+#include <typeinfo>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
@@ -24,14 +25,18 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void TrajetCompose::Afficher (  )
+void TrajetCompose::Afficher (  ) const
 // Algorithme :
 //
 {   
+    cout << "Entree dans Afficher de TrajetCompose" << endl;
+    const int j = this->GetTableau().GetNbTrajetsCourant();
 
-    for(int i = 0; i < this->tabDynamique.GetNbTrajetsCourant(); i++)
+    for(int i = 0; i < j; i++)
     {   
-        Trajet * trajet_i = this->tabDynamique.GetTrajet(i);
+
+        const Trajet * trajet_i = this->GetTableau().GetTrajet(i);
+        cout << "Trajet " << i << " : " << endl;
         if(i==0){
             cout << " " << trajet_i->GetDepart() << " ------ " << "( " << trajet_i->GetTransport() << " )"<< " ------> " << trajet_i->GetArrivee();
         }else{
@@ -43,12 +48,20 @@ void TrajetCompose::Afficher (  )
     cout<< endl;
 } //----- Fin de Méthode
 
-const TableauDynamique TrajetCompose::GetTableau (  )
+
+const TableauDynamique& TrajetCompose::GetTableau (  ) const
 // Algorithme :
 //
-{
+{   
     return this->tabDynamique;
 } //----- Fin de Méthode
+
+
+int TrajetCompose::GetNbEscales (  ) const
+{
+    return this->nbEscales;
+} //----- Fin de Méthode
+
 
 const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA, const char* VilleB) {
         for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); i++) {
@@ -58,7 +71,31 @@ const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA
             }
         }
         return nullptr;
+}
+
+
+bool TrajetCompose::operator==(const Trajet& autre) const {
+    const TrajetCompose* autreCompose = dynamic_cast<const TrajetCompose*>(&autre);
+    if (!autreCompose) {
+        return false;
     }
+
+    if (strcmp(this->villeDepart, autreCompose->GetDepart()) != 0 ||
+        strcmp(this->villeArrivee, autreCompose->GetArrivee()) != 0 ||
+        this->nbEscales != autreCompose->GetNbEscales() ||
+        this->tabDynamique.GetNbTrajetsCourant() != autreCompose->GetTableau().GetNbTrajetsCourant()) {
+        return false;
+    }
+    
+    for (int i = 0; i < this->tabDynamique.GetNbTrajetsCourant(); i++) {
+        if (!(*(this->tabDynamique.GetTrajet(i)) == *(autreCompose->GetTableau().GetTrajet(i)))) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -66,16 +103,16 @@ TrajetCompose::TrajetCompose ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <TrajetCompose>" << endl;
-#endif
-char final_end[50];
-cout << endl << "Quelle est la ville d'arrivée finale de ce trajet" << endl;
-cin >> final_end;
-this->nbEscales = 0;
-char start[50];
-char end[50]="";
-char mean[50];
+    #ifdef MAP
+        cout << "Appel au constructeur de <TrajetCompose>" << endl;
+    #endif
+    char final_end[50];
+    cout << endl << "Quelle est la ville d'arrivée finale de ce trajet" << endl;
+    cin >> final_end;
+    this->nbEscales = 0;
+    char start[50];
+    char end[50]="";
+    char mean[50];
     while(strcmp(end,final_end))
     {   
         if(this->nbEscales==0){
@@ -113,6 +150,9 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
+
+this->tabDynamique.~TableauDynamique();
+
 } //----- Fin de ~Trajet
 
 
