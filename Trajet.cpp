@@ -40,7 +40,7 @@ const char * Trajet::GetArrivee () const
     return this->villeArrivee;
 }
 
-void Trajet::Afficher (  ) const
+void Trajet::Afficher (  ) const 
 // Algorithme :
 //
 {
@@ -56,6 +56,11 @@ void Trajet::Afficher (  ) const
 
 
 //-------------------------------------------- Constructeurs - destructeur
+
+Trajet::Trajet ( const Trajet& autre)
+{
+cout << "Appel au constructeur de copie de <Trajet>" << endl;
+} //----- Fin de Trajet (constructeur de copie)
 
 Trajet::Trajet() 
 // Algorithme :

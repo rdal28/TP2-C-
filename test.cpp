@@ -18,7 +18,8 @@ int main(){
     catalogue.Ajouter(t3);
     catalogue.Ajouter(t4);
     catalogue.Ajouter(t5);
-    catalogue.Afficher();
+    
+
     cout << endl;
     cout << "Recherche Simple :" << endl << endl;
     catalogue.RechercheSimple("Alger","Marseille");

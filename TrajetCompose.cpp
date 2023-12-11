@@ -36,7 +36,6 @@ void TrajetCompose::Afficher (  ) const
     {   
 
         const Trajet * trajet_i = this->GetTableau().GetTrajet(i);
-        cout << "Trajet " << i << " : " << endl;
         if(i==0){
             cout << " " << trajet_i->GetDepart() << " ------ " << "( " << trajet_i->GetTransport() << " )"<< " ------> " << trajet_i->GetArrivee();
         }else{
@@ -98,6 +97,18 @@ bool TrajetCompose::operator==(const Trajet& autre) const {
 
 
 //-------------------------------------------- Constructeurs - destructeur
+
+
+TrajetCompose::TrajetCompose(const TrajetCompose& autre) : Trajet(autre)
+{
+    cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
+    strcpy(this->villeDepart, autre.GetDepart());
+    strcpy(this->villeArrivee, autre.GetArrivee());
+    this->nbEscales = autre.GetNbEscales();
+    this->tabDynamique = TableauDynamique(autre.GetTableau());
+    
+}
+
 
 TrajetCompose::TrajetCompose ( )
 // Algorithme :

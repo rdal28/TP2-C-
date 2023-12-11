@@ -62,6 +62,16 @@ bool TrajetSimple::operator==(const Trajet& autre) const {
 
 //-------------------------------------------- Constructeurs - destructeur
 
+
+TrajetSimple::TrajetSimple(const TrajetSimple& autre) : Trajet(autre)
+{
+    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+    strcpy(this->villeDepart, autre.GetDepart());
+    strcpy(this->villeArrivee, autre.GetArrivee());
+    strcpy(this->moyenTransport, autre.GetTransport());
+}
+
+
 TrajetSimple::TrajetSimple (  )
 // Algorithme :
 //

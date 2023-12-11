@@ -128,6 +128,7 @@ void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const ch
     return;
 }
 
+
 void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
 
     const int MAX_PATH_LENGTH = 3; // Longueur maximale du chemin (réalloué si nécessaire)
@@ -170,11 +171,16 @@ void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
             cout << endl << "Un ensemble de trajets correspondant à votre recherche est :" << endl << endl;
             for(int i=0; i<currentPath.GetNbTrajetsCourant(); i++){
                 cout << "Trajet numero " << i+1 << " : ";
+                cout << currentPath.GetTrajet(i) << endl;
+                cout << currentPath.GetTrajet(i)->GetDepart() << endl;
+                cout << currentPath.GetTrajet(i)->GetArrivee() << endl;
+                cout << currentPath.GetTrajet(i)->GetTransport() << endl;
+                cout << typeid(*currentPath.GetTrajet(i)).name() << endl;
+
                 currentPath.GetTrajet(i)->Afficher(); // PETITE ERREUR DE MERDE A REGLER ICI 
                 cout << endl;
             }
         }
-
     }
 
 

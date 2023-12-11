@@ -51,6 +51,10 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
+
+    TrajetCompose(const TrajetCompose& autre);
+
+    
     TrajetCompose ( );
     // Mode d'emploi :
     //

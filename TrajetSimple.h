@@ -42,6 +42,9 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
+    TrajetSimple(const TrajetSimple& autre);
+
+    
     TrajetSimple();
     // Mode d'emploi :
     //

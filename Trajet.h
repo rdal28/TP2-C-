@@ -28,7 +28,7 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    virtual void Afficher (  ) const;
+    virtual void Afficher (  ) const ;
     // Mode d'emploi :
     //
     // Contrat :
@@ -39,6 +39,9 @@ public:
     virtual bool operator==(const Trajet& autre) const;
 
 //-------------------------------------------- Constructeurs - destructeur
+
+    Trajet ( const Trajet& autre ) ;
+
 
     Trajet( );
     // Mode d'emploi :
