@@ -66,7 +66,15 @@ void TableauDynamique::Supprimer(int i)
 }
 
 
+void TableauDynamique::SetNbTrajetsCourant(int i)
+{
+    this->nbTrajetsCourant = i;
+}
 
+void TableauDynamique::Modif(int i, Trajet* t)
+{
+    this->tabDynamique[i] = t;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -87,9 +95,12 @@ TableauDynamique::TableauDynamique ( const TableauDynamique & autre )
         this->tabDynamique[i] = new Trajet(*autre.tabDynamique[i]);
     }
 }
-TableauDynamique::TableauDynamique() {
-        // Constructeur par défaut
-    }
+TableauDynamique::TableauDynamique()
+{
+        this->nbTrajetsCourant = 0;
+        this->nbTrajetsMax = 10;
+        this->tabDynamique = new Trajet*[this->nbTrajetsMax];
+}
 
 TableauDynamique::TableauDynamique(int tabSizeInit) 
 // Algorithme :

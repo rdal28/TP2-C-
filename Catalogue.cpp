@@ -120,7 +120,15 @@ void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, Tableau
 
 void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const char* VilleB, TableauDynamique& currentPath){
     
+    cout << "Entree dans UneCombinaison" << endl << endl;
+
     bool found = false; // Indicateur de chemin trouvé
+
+    for(int i = 0; i < currentPath.GetNbTrajetsCourant(); i++)
+    {
+        currentPath.Modif(i, nullptr);
+    }
+    currentPath.SetNbTrajetsCourant(0);
 
     currentPath.Ajouter(startTrajet);
     BruteForceSearch(VilleA, VilleB, currentPath, 1, found);
@@ -150,8 +158,13 @@ void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
                 }
             }
             if (!alreadyExists) {
-                Departs.Ajouter(startTrajet);
-                departsCount++;
+                if(strcmp(startTrajet->GetArrivee(), VilleB) == 0) {
+                    cout << endl << "Un trajet direct correspondant a votre recherche est :" << endl << endl;
+                    startTrajet->Afficher();
+                } else {
+                    Departs.Ajouter(startTrajet);
+                    departsCount++;
+                }
             }
         }
     }
@@ -162,10 +175,11 @@ void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
     }
 
     // Parcours tous les trajets de départ pour trouver les chemins possibles
+    TableauDynamique currentPath = TableauDynamique(MAX_PATH_LENGTH); // Tableau pour stocker le chemin actuel
+
     for(int j=0; j<departsCount; j++){
         cout << "Itération " << j << " : " << endl;
         Trajet* startTrajet = Departs.GetTrajet(j);
-        TableauDynamique currentPath(MAX_PATH_LENGTH); // Tableau pour stocker le chemin actuel
         UneCombinaison(startTrajet, VilleA, VilleB, currentPath);
         if (currentPath.GetNbTrajetsCourant()!=1) {
             cout << endl << "Un ensemble de trajets correspondant à votre recherche est :" << endl << endl;

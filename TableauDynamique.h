@@ -45,6 +45,10 @@ public:
 
     int GetNbTrajetsCourant ( ) const;
 
+    void SetNbTrajetsCourant(int i);
+
+    void Modif(int i, Trajet* t);
+
 //-------------------------------------------- Constructeurs - destructeur
 
 
