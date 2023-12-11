@@ -30,15 +30,18 @@ const char * Trajet::GetTransport () const
     return nullptr;
 }
 
+
 const char * Trajet::GetDepart () const
 {   
     return this->villeDepart;
 }
 
+
 const char * Trajet::GetArrivee () const
 {   
     return this->villeArrivee;
 }
+
 
 void Trajet::Afficher (  ) const 
 // Algorithme :
@@ -47,11 +50,11 @@ void Trajet::Afficher (  ) const
     cout << "Entree dans Afficher de Trajet" << endl;
 } //----- Fin de Méthode
 
- bool Trajet::operator==(const Trajet& autre) const
- {
 
- }
+bool Trajet::operator==(const Trajet& autre) const
+{
 
+}
 
 
 
@@ -59,8 +62,11 @@ void Trajet::Afficher (  ) const
 
 Trajet::Trajet ( const Trajet& autre)
 {
-cout << "Appel au constructeur de copie de <Trajet>" << endl;
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <Trajet>" << endl;
+#endif
 } //----- Fin de Trajet (constructeur de copie)
+
 
 Trajet::Trajet() 
 // Algorithme :
@@ -70,7 +76,6 @@ Trajet::Trajet()
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-
 } //----- Fin de Trajet
 
 

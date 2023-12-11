@@ -31,13 +31,13 @@ const char * TrajetSimple::GetTransport () const
     return this->moyenTransport;
 }
 
+
 void TrajetSimple::Afficher (  ) const
 // Algorithme :
 //
 {   
     cout << " " << this->villeDepart << " ------ " << "( " << this->moyenTransport << " )"<< " ------> " <<this->villeArrivee << endl;
 } //----- Fin de Méthode
-
 
 
 bool TrajetSimple::operator==(const Trajet& autre) const {
@@ -57,14 +57,14 @@ bool TrajetSimple::operator==(const Trajet& autre) const {
 }
 
 
-
-
 //-------------------------------------------- Constructeurs - destructeur
 
-
 TrajetSimple::TrajetSimple(const TrajetSimple& autre) : Trajet(autre)
-{
-    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+{   
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+    #endif
+
     strcpy(this->villeDepart, autre.GetDepart());
     strcpy(this->villeArrivee, autre.GetArrivee());
     strcpy(this->moyenTransport, autre.GetTransport());
@@ -86,6 +86,7 @@ cout << endl<< "Veuillez saisir le mode de transport" << endl;
 cin >> this->moyenTransport;
 
 } //----- Fin de Trajet
+
 
 TrajetSimple::TrajetSimple ( char A[50], char B[50],char T[50] ){
     strcpy(this->villeDepart,A);

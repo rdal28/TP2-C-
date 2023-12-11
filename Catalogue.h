@@ -46,10 +46,10 @@ public:
     // Contrat :
     //
 
-    void BruteForceSearch (const char* VilleA, const char* VilleB, TableauDynamique& currentPath, int pathLength, bool& found);
+    void RechercheBruteForce (const char* VilleA, const char* VilleB, TableauDynamique& cheminCourant, int tailleChemin, bool& found);
 
 
-    void UneCombinaison(Trajet* startTrajet,const char* VilleA, const char* VilleB , TableauDynamique& currentPath);
+    void UneCombinaison(Trajet* startTrajet,const char* VilleA, const char* VilleB , TableauDynamique& cheminCourant);
 
 
     void RechercheAvancee (const char*, const char*);

@@ -15,7 +15,6 @@
 #include <iostream>
 using namespace std;
 #include <cstring>
-#include <typeinfo>
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -43,6 +42,7 @@ void Catalogue::Afficher (  )
 
 } //----- Fin de Méthode
 
+
 void Catalogue::Ajouter ( Trajet * ptTrajet )
 {
 
@@ -50,53 +50,62 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 
 } //----- Fin de Méthode
 
+
 void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 {
 
     
     int nbrt = this->tabDynamique.GetNbTrajetsCourant();
+    if(nbrt == 0)
+    {
+        cout << "Le catalogue est vide." << endl << endl;
+        return;
+    }
+
     bool trajetTrouve = false;
 
+    cout << endl <<"Recherche simple en cours..." << endl << endl;
 
     for(int i= 0; i<nbrt; i++){
         Trajet * t = this->tabDynamique.GetTrajet(i);
-
-        if (!strcmp(t->GetArrivee(), VilleB) && !strcmp(t->GetDepart(), VilleA)) {
-            cout << endl << "Voici les trajets qui correspondent a votre recherche :" << endl;
-            t->Afficher();
-            trajetTrouve = true;
-        } else if (typeid(*t) == typeid(TrajetCompose)) {
-            TrajetCompose* trajetCompose = dynamic_cast<TrajetCompose*>(t);
+        TrajetCompose* trajetCompose = dynamic_cast<TrajetCompose*>(t);
+        if(trajetCompose){
             TrajetSimple* ts = (TrajetSimple*) trajetCompose->RechercheDansTrajetCompose(VilleA, VilleB);
             if (ts != nullptr) {
-                cout << endl <<"Voici les trajets qui correspondent a votre recherche :" << endl;
+                cout << endl <<"Voici un trajet qui correspond à votre recherche (issu d'un Trajet Compose) :" << endl;
                 ts->Afficher();
                 trajetTrouve = true;
             }
         }
+
+        if (!strcmp(t->GetArrivee(), VilleB) && !strcmp(t->GetDepart(), VilleA)) {
+            cout << endl << "Voici un trajet qui correspond à votre recherche :" << endl;
+            t->Afficher();
+            trajetTrouve = true;   
+        }
     }
 
     if (!trajetTrouve) {
-        cout << endl << "Aucun trajet trouve de " << VilleA << " a " << VilleB << ".";
+        cout << endl << "Aucun trajet trouve dans le Catalogue de " << VilleA << " a " << VilleB << ".";
     }
 
 } //----- Fin de Méthode
 
 
-void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, TableauDynamique& currentPath, int pathLength, bool& found) {
+void Catalogue::RechercheBruteForce(const char* VilleA, const char* VilleB, TableauDynamique& cheminCourant, int tailleChemin, bool& found) {
 
-    if (!strcmp(currentPath.GetTrajet(pathLength - 1)->GetArrivee(), VilleB)) {
+    if (!strcmp(cheminCourant.GetTrajet(tailleChemin - 1)->GetArrivee(), VilleB)) {
         found = true;
         return;
     }
 
     for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
-        if(tabDynamique.GetTrajet(i) == currentPath.GetTrajet(pathLength - 1)) continue;
+        if(tabDynamique.GetTrajet(i) == cheminCourant.GetTrajet(tailleChemin - 1)) continue;
         Trajet* nextTrajet = tabDynamique.GetTrajet(i);
 
         bool alreadyExists = false;
-        for(int j = 0; j < pathLength; j++) {
-            if(nextTrajet == currentPath.GetTrajet(j)) {
+        for(int j = 0; j < tailleChemin; j++) {
+            if(nextTrajet == cheminCourant.GetTrajet(j)) {
                 alreadyExists = true;
                 break;
             }
@@ -104,34 +113,33 @@ void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, Tableau
         
         if (alreadyExists) continue;
 
-        if (!strcmp(currentPath.GetTrajet(pathLength - 1)->GetArrivee(), nextTrajet->GetDepart())) {
-            currentPath.Ajouter(nextTrajet);
-            BruteForceSearch(VilleA, VilleB, currentPath, pathLength + 1, found);
+        if (!strcmp(cheminCourant.GetTrajet(tailleChemin - 1)->GetArrivee(), nextTrajet->GetDepart())) {
+            cheminCourant.Ajouter(nextTrajet);
+            RechercheBruteForce(VilleA, VilleB, cheminCourant, tailleChemin + 1, found);
             if (found) {
                 break;
-            } else 
-            {currentPath.Supprimer(pathLength - 1);} // Retour en arrière pour essayer un autre trajet
+            } else {
+                cheminCourant.Supprimer(tailleChemin - 1);
+            }
         }
     }
     return;
 }
 
 
-
-void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const char* VilleB, TableauDynamique& currentPath){
+void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const char* VilleB, TableauDynamique& cheminCourant){
     
-    cout << "Entree dans UneCombinaison" << endl << endl;
 
     bool found = false; // Indicateur de chemin trouvé
 
-    for(int i = 0; i < currentPath.GetNbTrajetsCourant(); i++)
+    for(int i = 0; i < cheminCourant.GetNbTrajetsCourant(); i++)
     {
-        currentPath.Modif(i, nullptr);
+        cheminCourant.Modif(i, nullptr);
     }
-    currentPath.SetNbTrajetsCourant(0);
+    cheminCourant.SetNbTrajetsCourant(0);
 
-    currentPath.Ajouter(startTrajet);
-    BruteForceSearch(VilleA, VilleB, currentPath, 1, found);
+    cheminCourant.Ajouter(startTrajet);
+    RechercheBruteForce(VilleA, VilleB, cheminCourant, 1, found);
 
     return;
 }
@@ -140,9 +148,19 @@ void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const ch
 void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
 
     const int MAX_PATH_LENGTH = 3; // Longueur maximale du chemin (réalloué si nécessaire)
+    bool found = false; // Indicateur d'existance d'un chemin
+
+    int nbrt = this->tabDynamique.GetNbTrajetsCourant(); // Réinitialisation du tableau dynamique
+    if(nbrt == 0)
+    {
+        cout << "Le catalogue est vide." << endl << endl;
+        return;
+    }
     
+    cout << endl << "Recherche avancee en cours..." << endl << endl;
+
     // Parcours tous les trajets pour stocker les trajets de départ
-    TableauDynamique Departs(this->tabDynamique.GetNbTrajetsCourant());
+    TableauDynamique Departs(nbrt);
     int departsCount = 0;
 
     for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); i++) {
@@ -157,10 +175,19 @@ void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
                     break;
                 }
             }
+            TrajetCompose* trajetCompose = dynamic_cast<TrajetCompose*>(startTrajet);
             if (!alreadyExists) {
                 if(strcmp(startTrajet->GetArrivee(), VilleB) == 0) {
-                    cout << endl << "Un trajet direct correspondant a votre recherche est :" << endl << endl;
+                    cout << endl << "Un trajet direct correspondant a votre recherche est :" << endl;
                     startTrajet->Afficher();
+                    found = true;
+                } else if(trajetCompose){
+                    TrajetSimple* ts = (TrajetSimple*) trajetCompose->RechercheDansTrajetCompose(VilleA, VilleB);
+                    if (ts != nullptr) {
+                        cout << endl <<"Un trajet direct correspond à votre recherche est :" << endl;
+                        ts->Afficher();
+                        found = true;
+                    }
                 } else {
                     Departs.Ajouter(startTrajet);
                     departsCount++;
@@ -169,39 +196,29 @@ void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
         }
     }
 
-    for (int i = 0; i < departsCount; i++) {
-        cout << "Trajet de depart numero " << i+1 << " : ";
-        Departs.GetTrajet(i)->Afficher();
-    }
-
     // Parcours tous les trajets de départ pour trouver les chemins possibles
-    TableauDynamique currentPath = TableauDynamique(MAX_PATH_LENGTH); // Tableau pour stocker le chemin actuel
+    TableauDynamique cheminCourant = TableauDynamique(MAX_PATH_LENGTH); // Tableau pour stocker le chemin actuel
 
     for(int j=0; j<departsCount; j++){
-        cout << "Itération " << j << " : " << endl;
         Trajet* startTrajet = Departs.GetTrajet(j);
-        UneCombinaison(startTrajet, VilleA, VilleB, currentPath);
-        if (currentPath.GetNbTrajetsCourant()!=1) {
-            cout << endl << "Un ensemble de trajets correspondant à votre recherche est :" << endl << endl;
-            for(int i=0; i<currentPath.GetNbTrajetsCourant(); i++){
+        UneCombinaison(startTrajet, VilleA, VilleB, cheminCourant);
+        if (cheminCourant.GetNbTrajetsCourant()!=1) {
+            cout << endl << "Un ensemble de trajets correspondant à votre recherche est :" << endl;
+            for(int i=0; i<cheminCourant.GetNbTrajetsCourant(); i++){
                 cout << "Trajet numero " << i+1 << " : ";
-                cout << currentPath.GetTrajet(i) << endl;
-                cout << currentPath.GetTrajet(i)->GetDepart() << endl;
-                cout << currentPath.GetTrajet(i)->GetArrivee() << endl;
-                cout << currentPath.GetTrajet(i)->GetTransport() << endl;
-                cout << typeid(*currentPath.GetTrajet(i)).name() << endl;
-
-                currentPath.GetTrajet(i)->Afficher(); // PETITE ERREUR DE MERDE A REGLER ICI 
+                cheminCourant.GetTrajet(i)->Afficher();
                 cout << endl;
+                found = true;
             }
         }
     }
 
 
-    cout << endl << "Fin de la recherche avancee" << endl << endl;
+    if(found) cout << endl << "Fin de la recherche avancee" << endl << endl;
+    else cout << endl << "Aucun chemin trouve dans le Catalogue de " << VilleA << " a " << VilleB << "." << endl << endl;
     
     return ;
-} // GROS PROBLEME DE CETTE FONCTION : ELLE NE RENVOIE QUE LE PREMIER CHEMIN SI IL Y EN A PLUSIEURS QUI POSSIBLES A PARTIR D'UN MEME TRAJET DEPART
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 

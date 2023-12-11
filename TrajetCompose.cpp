@@ -15,7 +15,6 @@
 #include <iostream>
 using namespace std;
 #include <cstring>
-#include <typeinfo>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
@@ -96,7 +95,6 @@ bool TrajetCompose::operator==(const Trajet& autre) const {
 
 
 //-------------------------------------------- Constructeurs - destructeur
-
 
 TrajetCompose::TrajetCompose(const TrajetCompose& autre) : Trajet(autre)
 {
