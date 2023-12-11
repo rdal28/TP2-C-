@@ -161,7 +161,6 @@ TrajetCompose::~TrajetCompose ( )
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
 
-this->tabDynamique.~TableauDynamique();
 
 } //----- Fin de ~Trajet
 
