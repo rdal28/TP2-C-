@@ -1,29 +1,28 @@
-/*************************************************************************
-                           Catalogue  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
+/*********************************************************************************************************************************************
+                           Catalogue  -  Classe gestionnaire du Catalogue des Trajets
+                                                -------------------
+    début                : 22/11/2023
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
-
 #include <iostream>
 using namespace std;
 #include <cstring>
-
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
-
 //------------------------------------------------------------- Constantes
+const int MAX_PATH_LENGTH = 3;
+
 
 //----------------------------------------------------------------- PUBLIC
-
 //----------------------------------------------------- Méthodes publiques
+
 void Catalogue::Afficher (  )
 {   
     // Affiche les trajets du catalogue
@@ -41,7 +40,7 @@ void Catalogue::Afficher (  )
         }
     }
 
-} //----- Fin de Méthode
+} //----- Fin de Afficher
 
 
 void Catalogue::Ajouter ( Trajet * ptTrajet )
@@ -49,40 +48,29 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
     // Ajoute un trajet au catalogue
     this->tabDynamique.Ajouter(ptTrajet);
 
-} //----- Fin de Méthode
+} //----- Fin de Ajouter
 
-// DirectedGraph* Catalogue::toGraph() {
-//     // Création d'un nouveau graphe dirigé
-//     DirectedGraph* graph = new DirectedGraph();
 
-//     // Parcours de tous les trajets du catalogue
-//     for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
-//         // Récupération du trajet actuel
-//         Trajet* trajet = tabDynamique.GetTrajet(i);
-
-//         // Affichage du nombre d'escales du trajet (pour débogage)
-//         cout << trajet->GetNbEscales() << endl;
-
-//         // Ajout d'une arête en fonction du nombre d'escales
-//         if (trajet->GetNbEscales() > 0) {
-//             // Si le trajet a des escales, on ajoute une arête avec le label "trajet compose"
-//             graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), "trajet compose");
-//         } else {
-//             // Sinon, on ajoute une arête avec le moyen de transport du trajet
-//             graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
-//         }
-//     }
-
-//     // Retour du graphe construit
-//     return graph;
-// }
-////laissé en commentaire que pour démo car utilise autre que iostream et string
-
+/**************************** Méthode propre au DFS (bonus) ***************************
+DirectedGraph* Catalogue::toGraph() {
+    DirectedGraph* graph = new DirectedGraph();
+    for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
+        Trajet* trajet = tabDynamique.GetTrajet(i);
+        cout << trajet->GetNbEscales() << endl;
+        if(trajet->GetNbEscales() > 0){
+            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), "trajet compose");
+        }else{
+            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
+        }
+        
+    }
+    return graph;
+} //----- Fin de DirectedGraph
+******************************************************************************************/
 
 
 void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 {
-    // Effectue une recherche simple de trajets entre VilleA et VilleB
     int nbrt = this->tabDynamique.GetNbTrajetsCourant();
     if(nbrt == 0)
     {
@@ -117,7 +105,7 @@ void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
         cout << endl << "Aucun trajet trouve dans le Catalogue de " << VilleA << " a " << VilleB << ".";
     }
 
-} //----- Fin de Méthode
+} //----- Fin de RechercheSimple
 
 
 void Catalogue::RechercheBruteForce(const char* VilleA, const char* VilleB, TableauDynamique& cheminCourant, int tailleChemin, bool& found) {
@@ -152,7 +140,7 @@ void Catalogue::RechercheBruteForce(const char* VilleA, const char* VilleB, Tabl
         }
     }
     return;
-}
+} //----- Fin de RechercheBruteForce
 
 
 void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const char* VilleB, TableauDynamique& cheminCourant){
@@ -170,15 +158,14 @@ void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const ch
     RechercheBruteForce(VilleA, VilleB, cheminCourant, 1, found);
 
     return;
-}
+} //----- Fin de UneCombinaison
 
 
 void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
 
-    const int MAX_PATH_LENGTH = 3; // Longueur maximale du chemin (réalloué si nécessaire)
     bool found = false; // Indicateur d'existance d'un chemin
 
-    int nbrt = this->tabDynamique.GetNbTrajetsCourant(); // Réinitialisation du tableau dynamique
+    int nbrt = this->tabDynamique.GetNbTrajetsCourant();
     if(nbrt == 0)
     {
         cout << "Le catalogue est vide." << endl << endl;
@@ -246,7 +233,7 @@ void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
     else cout << endl << "Aucun chemin trouve dans le Catalogue de " << VilleA << " a " << VilleB << "." << endl << endl;
     
     return ;
-}
+} //----- Fin de RechercheAvancee
 
 //-------------------------------------------- Constructeurs - destructeur
 

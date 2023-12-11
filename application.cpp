@@ -1,6 +1,6 @@
+#include <cstring>
 #include <iostream>
 using namespace std;
-#include <cstring>
 #include "Catalogue.h"
 #include "Trajet.h"
 #include "TrajetSimple.h"
