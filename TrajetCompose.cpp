@@ -29,14 +29,12 @@ void TrajetCompose::Afficher (  ) const
 // Algorithme :
 //
 {   
-    cout << "Entree dans Afficher de TrajetCompose" << endl;
     const int j = this->GetTableau().GetNbTrajetsCourant();
 
     for(int i = 0; i < j; i++)
     {   
 
         const Trajet * trajet_i = this->GetTableau().GetTrajet(i);
-        cout << "Trajet " << i << " : " << endl;
         if(i==0){
             cout << " " << trajet_i->GetDepart() << " ------ " << "( " << trajet_i->GetTransport() << " )"<< " ------> " << trajet_i->GetArrivee();
         }else{
