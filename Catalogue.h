@@ -41,7 +41,8 @@ public:
     void Afficher (  );
     // Affiche les trajets du catalogue
 
-    DirectedGraph* toGraph();
+    // DirectedGraph* toGraph();
+    // // Convertit le catalogue en graphe orienté pour appliqué un DFS, utilise autre bib que iostream donc laisée que pour la démo.
 
     void RechercheSimple (char*, char*);
     // Effectue une recherche simple de trajets entre VilleA et VilleB

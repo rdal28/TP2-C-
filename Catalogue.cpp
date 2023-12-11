@@ -51,20 +51,33 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 
 } //----- Fin de Méthode
 
-DirectedGraph* Catalogue::toGraph() {
-    DirectedGraph* graph = new DirectedGraph();
-    for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
-        Trajet* trajet = tabDynamique.GetTrajet(i);
-        cout << trajet->GetNbEscales() << endl;
-        if(trajet->GetNbEscales() > 0){
-            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), "trajet compose");
-        }else{
-            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
-        }
-        
-    }
-    return graph;
-}
+// DirectedGraph* Catalogue::toGraph() {
+//     // Création d'un nouveau graphe dirigé
+//     DirectedGraph* graph = new DirectedGraph();
+
+//     // Parcours de tous les trajets du catalogue
+//     for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
+//         // Récupération du trajet actuel
+//         Trajet* trajet = tabDynamique.GetTrajet(i);
+
+//         // Affichage du nombre d'escales du trajet (pour débogage)
+//         cout << trajet->GetNbEscales() << endl;
+
+//         // Ajout d'une arête en fonction du nombre d'escales
+//         if (trajet->GetNbEscales() > 0) {
+//             // Si le trajet a des escales, on ajoute une arête avec le label "trajet compose"
+//             graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), "trajet compose");
+//         } else {
+//             // Sinon, on ajoute une arête avec le moyen de transport du trajet
+//             graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
+//         }
+//     }
+
+//     // Retour du graphe construit
+//     return graph;
+// }
+////laissé en commentaire que pour démo car utilise autre que iostream et string
+
 
 
 void Catalogue::RechercheSimple (char* VilleA, char* VilleB)

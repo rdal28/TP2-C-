@@ -6,7 +6,7 @@ using namespace std;
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 #include "TableauDynamique.h"
-#include "DirectedGraph.h"
+// #include "DirectedGraph.h"
 
 int main()
 {   
@@ -74,7 +74,7 @@ int main()
             case 3 :
             {   
                 cout << "Veuillez saisir :" << endl << endl << "\t 1 pour une recherche simple" << endl
-                << "\t 2 pour une recherche avancee" <<endl << "\t 3 pour une recherche avancee avec supplement triche"<< endl << "\t 4 pour revenir au menu precedent" << endl << endl;
+                << "\t 2 pour une recherche avancee" << endl << "\t 3 pour revenir au menu precedent" << endl << endl;
                 int choixrecherche;
                 cin >> choixrecherche;
 
@@ -106,25 +106,26 @@ int main()
                     cout << endl << endl << endl;
                     break;
                 }
-                else if (choixrecherche == 3)
-                {
-                    cout << "Veuillez saisir la ville dont vous voulez partir :" << endl;
-                    char villeDepart[50], villeArrivee[50];
-                    cin >> villeDepart;
-                    cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
-                    cin >> villeArrivee;
+                ////utilisation d'include autre que iostream et string, presente pour démo.
+                // else if (choixrecherche == 4)
+                // {
+                //     cout << "Veuillez saisir la ville dont vous voulez partir :" << endl;
+                //     char villeDepart[50], villeArrivee[50];
+                //     cin >> villeDepart;
+                //     cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
+                //     cin >> villeArrivee;
 
-                    DirectedGraph* graph = catalogue.toGraph();
+                //     DirectedGraph* graph = catalogue.toGraph();
                     
-                    graph->dfs(villeDepart, villeArrivee);
+                //     graph->dfs(villeDepart, villeArrivee);
 
-                    delete graph;
+                //     delete graph;
 
-                    cout << endl << endl << endl;
-                    break;
-                }
+                //     cout << endl << endl << endl;
+                //     break;
+                // }
 
-                else if (choixrecherche==4)
+                else if (choixrecherche==3)
                     break;
 
                 else 
