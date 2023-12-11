@@ -34,6 +34,7 @@ public:
     // Contrat :
     //
     virtual const char * GetTransport () const;
+    virtual int GetNbEscales (  ) const;
     const char* GetArrivee () const;
     const char* GetDepart ()const ;
     virtual bool operator==(const Trajet& autre) const;

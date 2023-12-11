@@ -15,6 +15,7 @@
 
 #include "TableauDynamique.h"
 #include "TrajetCompose.h"
+#include "DirectedGraph.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -39,6 +40,8 @@ public:
     //
     // Contrat :
     //
+
+    DirectedGraph* toGraph();
 
     void RechercheSimple (char*, char*);
     // Mode d'emploi :

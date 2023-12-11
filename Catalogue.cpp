@@ -50,6 +50,23 @@ void Catalogue::Ajouter ( Trajet * ptTrajet )
 
 } //----- Fin de Méthode
 
+DirectedGraph* Catalogue::toGraph() {
+    DirectedGraph* graph = new DirectedGraph();
+    for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
+        Trajet* trajet = tabDynamique.GetTrajet(i);
+        if(1){
+            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
+        }else{
+            for(int sousTrajet = 0; sousTrajet < trajet->GetNbEscales(); sousTrajet++){
+                graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
+            }
+        }
+        
+    }
+    return graph;
+}
+
+
 void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 {
 

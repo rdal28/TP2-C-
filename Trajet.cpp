@@ -30,6 +30,10 @@ const char * Trajet::GetTransport () const
     return nullptr;
 }
 
+int Trajet::GetNbEscales (  ) const {
+    return 0;
+}
+
 const char * Trajet::GetDepart () const
 {   
     return this->villeDepart;
