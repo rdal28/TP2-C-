@@ -1,9 +1,12 @@
 /*************************************************************************
-                           TrajetSimple  -  description
+                               TrajetSimple
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/11/2023
+    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
+    e-mail               : youssef.chaouki@insa-lyon.fr
+                           djalil.chikhi@insa-lyon.fr
+                           riad.dalaoui@insa-lyon.fr
+                           rayan.hanader@insa-lyon.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
@@ -28,15 +31,14 @@ using namespace std;
 
 const char * TrajetSimple::GetTransport () const
 {
-    return this->moyenTransport;
+    return this->moyenTransport; //Retourne le mode de transport du trajet
 }
 
 void TrajetSimple::Afficher (  ) const
-// Algorithme :
-//
+// Méthode affichage d'un trajet simple
 {   
     cout << " " << this->villeDepart << " ------ " << "( " << this->moyenTransport << " )"<< " ------> " <<this->villeArrivee << endl;
-} //----- Fin de Méthode
+} //----- Fin de la méthode Afficher
 
 
 
@@ -54,7 +56,7 @@ bool TrajetSimple::operator==(const Trajet& autre) const {
     }
 
     return true;
-}
+} //------ Fin de surchage d'opérateur ==
 
 
 
@@ -64,16 +66,16 @@ bool TrajetSimple::operator==(const Trajet& autre) const {
 
 TrajetSimple::TrajetSimple(const TrajetSimple& autre) : Trajet(autre)
 {
+    #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+    #endif  
     strcpy(this->villeDepart, autre.GetDepart());
     strcpy(this->villeArrivee, autre.GetArrivee());
     strcpy(this->moyenTransport, autre.GetTransport());
-}
+} //-------- Fin constructeur par copie TrajetSimple
 
 
 TrajetSimple::TrajetSimple (  )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
@@ -85,7 +87,7 @@ cin >> this->villeArrivee;
 cout << endl<< "Veuillez saisir le mode de transport" << endl;
 cin >> this->moyenTransport;
 
-} //----- Fin de Trajet
+} //----- Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple ( char A[50], char B[50],char T[50] ){
     strcpy(this->villeDepart,A);
@@ -95,13 +97,12 @@ TrajetSimple::TrajetSimple ( char A[50], char B[50],char T[50] ){
 
 
 TrajetSimple::~TrajetSimple ( )
-// Algorithme :
-//
+//Destructeur
 {
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
-} //----- Fin de ~Trajet
+} //----- Fin de ~TrajetSimple
 
 
 //------------------------------------------------------------------ PRIVE

@@ -1,9 +1,12 @@
 /*************************************************************************
-                           Trajet  -  description
+                                   Trajet
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/11/2023
+    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
+    e-mail               : youssef.chaouki@insa-lyon.fr
+                           djalil.chikhi@insa-lyon.fr
+                           riad.dalaoui@insa-lyon.fr
+                           rayan.hanader@insa-lyon.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
@@ -26,6 +29,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 const char * Trajet::GetTransport () const
+// Méthode virtuelle constante pour obtenir le moyen de transport du trajet
 {
     return nullptr;
 }
@@ -35,25 +39,29 @@ int Trajet::GetNbEscales (  ) const {
 }
 
 const char * Trajet::GetDepart () const
+ // Méthode constante pour obtenir la ville de départ du trajet
 {   
     return this->villeDepart;
 }
 
 const char * Trajet::GetArrivee () const
+// Méthode constante pour obtenir la ville d'arrivée du trajet
 {   
     return this->villeArrivee;
 }
 
 void Trajet::Afficher (  ) const 
-// Algorithme :
-//
+// Méthode virtuelle pure pour afficher les détails du trajet
 {
+    #ifdef MAP
     cout << "Entree dans Afficher de Trajet" << endl;
-} //----- Fin de Méthode
+    #endif
+
+} //----- Fin de la méthode Afficher
 
  bool Trajet::operator==(const Trajet& autre) const
- {
-
+ { 
+     // Méthode virtuelle constante pour comparer deux trajets (implémentée dans les classes dérivées)
  }
 
 
@@ -62,14 +70,15 @@ void Trajet::Afficher (  ) const
 //-------------------------------------------- Constructeurs - destructeur
 
 Trajet::Trajet ( const Trajet& autre)
+// Constructeur de copie de Trajet
 {
-cout << "Appel au constructeur de copie de <Trajet>" << endl;
+    #ifdef MAP
+    cout << "Appel au constructeur de copie de <Trajet>" << endl;
+    #endif
+
 } //----- Fin de Trajet (constructeur de copie)
 
 Trajet::Trajet() 
-// Algorithme :
-//
-
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
