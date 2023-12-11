@@ -1,35 +1,28 @@
-/*************************************************************************
-                               TrajetCompose
-                             -------------------
+/*********************************************************************************************************************************************
+                TrajetCompose  -  Classe définissant un trajet compose de plusieurs trajets simples
+                                                -------------------
     début                : 22/11/2023
-    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
-    e-mail               : youssef.chaouki@insa-lyon.fr
-                           djalil.chikhi@insa-lyon.fr
-                           riad.dalaoui@insa-lyon.fr
-                           rayan.hanader@insa-lyon.fr
-*************************************************************************/
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
-
 #include <iostream>
 using namespace std;
 #include <cstring>
-
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 
-//------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 
 void TrajetCompose::Afficher (  ) const
-// Affiche les détails du trajet composé en parcourant le tableau dynamique de trajets
 {   
     const int j = this->GetTableau().GetNbTrajetsCourant();
 
@@ -46,25 +39,22 @@ void TrajetCompose::Afficher (  ) const
 
     }
     cout<< endl;
-} //----- Fin de Méthode
+} //----- Fin de Afficher
 
 
 const TableauDynamique& TrajetCompose::GetTableau (  ) const
-// Renvoie le tableau dynamique de trajets associé à ce trajet composé
 {   
     return this->tabDynamique;
-} //----- Fin de Méthode
+} //----- Fin de GetTableau
 
 
 int TrajetCompose::GetNbEscales (  ) const
- // Renvoie le nombre d'escales dans le trajet composé
 {
     return this->nbEscales;
-} //----- Fin de Méthode
+} //----- Fin de GetNbEscales
 
 
 const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA, const char* VilleB) 
- // Recherche un trajet simple dans le trajet composé en fonction des villes de départ et d'arrivée
 {
         for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); i++) {
             TrajetSimple* trajet = (TrajetSimple*) tabDynamique.GetTrajet(i);
@@ -73,11 +63,10 @@ const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA
             }
         }
         return nullptr;
-}
+} //----- Fin de RechercheDansTrajetCompose
 
 
 bool TrajetCompose::operator==(const Trajet& autre) const 
-// Surcharge de l'opérateur d'égalité pour comparer deux trajets composés
 {
     const TrajetCompose* autreCompose = dynamic_cast<const TrajetCompose*>(&autre);
     if (!autreCompose) {
@@ -98,7 +87,7 @@ bool TrajetCompose::operator==(const Trajet& autre) const
     }
 
     return true;
-}
+} //----- Fin de operator==
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -113,7 +102,7 @@ TrajetCompose::TrajetCompose(const TrajetCompose& autre) : Trajet(autre)
     this->nbEscales = autre.GetNbEscales();
     this->tabDynamique = TableauDynamique(autre.GetTableau());
     
-}
+} //-------- Fin constructeur par copie TrajetCompose
 
 
 TrajetCompose::TrajetCompose ( )
@@ -157,7 +146,7 @@ TrajetCompose::TrajetCompose ( )
 
 
 
-} //----- Fin de Trajet
+} //----- Fin de TrajetCompose  (constructeur par défaut)
 
 
 TrajetCompose::~TrajetCompose ( )
@@ -169,10 +158,4 @@ TrajetCompose::~TrajetCompose ( )
 #endif
 
 
-} //----- Fin de ~Trajet
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+} //----- Fin de ~TrajetCompose

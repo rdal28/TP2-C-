@@ -1,34 +1,33 @@
-/*************************************************************************
-                               TrajetCompose
-                             -------------------
+/*********************************************************************************************************************************************
+                TrajetCompose  -  Classe définissant un trajet compose de plusieurs trajets simples
+                                                -------------------
     début                : 22/11/2023
-    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
-    e-mail               : youssef.chaouki@insa-lyon.fr
-                           djalil.chikhi@insa-lyon.fr
-                           riad.dalaoui@insa-lyon.fr
-                           rayan.hanader@insa-lyon.fr
-*************************************************************************/
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
 #if ! defined ( TRAJETCOMPOSE_H )
 #define TRAJETCOMPOSE_H
-#define TAILLE_MAX_INIT 10
+
+//--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TableauDynamique.h"
 #include "Catalogue.h"
-
-//--------------------------------------------------- Interfaces utilisées
-
 //------------------------------------------------------------- Constantes
+#define TAILLE_MAX_INIT 10
 
-//------------------------------------------------------------------ Types
+//------------------------------------------------------------- Description
+/* Rôle de la classe <TrajetCompose> :
+   Classe définissant un trajet Compose de plusieurs trajets simples.
 
-//------------------------------------------------------------------------
-// Rôle de la classe <TrajetCompose>
+   Attributs de la classe <TrajetCompose> :
+   Un TrajetCompose est définit par une villeDepart et une villeArrivee, mais
+   aussi un TableauDynamique stockant les trajets simples qui le composent.
+*/
 
-// La classe TrajetCompose permet de créer et manipuler des trajets composés, elle hérite de la classe Trajet
-//
 //------------------------------------------------------------------------
 
 class TrajetCompose : public Trajet
@@ -75,7 +74,6 @@ protected:
 //----------------------------------------------------- Attributs protégés
     int nbEscales;
     TableauDynamique tabDynamique = TableauDynamique(TAILLE_MAX_INIT);
-    // Attribut protégé représentant un tableau dynamique de trajets simples 
 };
 
 #endif // TRAJETCOMPOSE_H

@@ -1,79 +1,61 @@
-/*************************************************************************
-                                   Trajet
-                             -------------------
+/*********************************************************************************************************************************************
+                            Trajet  -  Classe Ancêtre Abstraite de tous les Trajets
+                                                -------------------
     début                : 22/11/2023
-    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
-    e-mail               : youssef.chaouki@insa-lyon.fr
-                           djalil.chikhi@insa-lyon.fr
-                           riad.dalaoui@insa-lyon.fr
-                           rayan.hanader@insa-lyon.fr
-*************************************************************************/
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
 
+
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
-
 #include <iostream>
 using namespace std;
 #include <cstring>
-
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 
 const char * Trajet::GetTransport () const
-// Méthode virtuelle constante pour obtenir le moyen de transport du trajet
 {
     return nullptr;
-}
+} //----- Fin de GetTransport
 
 int Trajet::GetNbEscales (  ) const {
     return 0;
-}
+} //----- Fin de GetNbEscales
 
 const char * Trajet::GetDepart () const
- // Méthode constante pour obtenir la ville de départ du trajet
 {   
     return this->villeDepart;
-}
+} //----- Fin de GetDepart
 
 
 const char * Trajet::GetArrivee () const
-// Méthode constante pour obtenir la ville d'arrivée du trajet
 {   
     return this->villeArrivee;
-}
+} //----- Fin de GetArrivee
 
 
 void Trajet::Afficher (  ) const 
-// Méthode virtuelle pure pour afficher les détails du trajet
 {
-    #ifdef MAP
-    cout << "Entree dans Afficher de Trajet" << endl;
-    #endif
 
-} //----- Fin de la méthode Afficher
+} //----- Fin de Afficher
 
 bool Trajet::operator==(const Trajet& autre) const
 { 
-    // Méthode virtuelle constante pour comparer deux trajets (implémentée dans les classes dérivées)
-}
-
-
-
+    
+} //----- Fin de operator==
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
 Trajet::Trajet ( const Trajet& autre)
-// Constructeur de copie de Trajet
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
@@ -97,9 +79,3 @@ Trajet::~Trajet ( )
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
 } //----- Fin de ~Trajet
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-

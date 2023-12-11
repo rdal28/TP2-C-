@@ -1,39 +1,36 @@
-/*************************************************************************
-                                TrajetSimple
-                             -------------------
+/*********************************************************************************************************************************************
+                                TrajetSimple  -  Classe définissant un trajet simple
+                                                -------------------
     début                : 22/11/2023
-    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
-    e-mail               : youssef.chaouki@insa-lyon.fr
-                           djalil.chikhi@insa-lyon.fr
-                           riad.dalaoui@insa-lyon.fr
-                           rayan.hanader@insa-lyon.fr
-*************************************************************************/
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
 #if ! defined ( TRAJETSIMPLE_H )
 #define TRAJETSIMPLE_H
 
+//--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 
-//--------------------------------------------------- Interfaces utilisées
+//------------------------------------------------------------- Description
+/* Rôle de la classe <TrajetSimple> :
+   Classe définissant un trajet simple, c'est à dire un trajet sans escales.
 
-//------------------------------------------------------------- Constantes
+   Attributs de la classe <TrajetSimple> :
+   Un TrajetSimple est définit par une villeDepart, une villeArrivee, et un
+   mode de transport, trois chaines de caractères.
+*/
 
-//------------------------------------------------------------------ Types
-
-//------------------------------------------------------------------------
-// Rôle de la classe <TrajetSimple>
-// La classe TrajetSimple permet de créer et manipuler des trajets simples, elle hérite de la classe Trajet
-//
 //------------------------------------------------------------------------
 
 class TrajetSimple : public Trajet 
 {
-//----------------------------------------------------------------- PUBLIC
 
+//----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
-
     void Afficher ( ) const; 
     // Méthode pour afficher les détails d'un trajet simple (sans escales)
 
@@ -43,12 +40,12 @@ public:
     bool operator==(const Trajet& autre) const; 
     // Surcharge de l'opérateur d'égalité pour comparer deux trajets
 
+
 //-------------------------------------------- Constructeurs - destructeur
 
     TrajetSimple(const TrajetSimple& autre);
     // Constructeur de copie
 
-    
     TrajetSimple();
     // Constructeur par défaut
 
@@ -62,17 +59,8 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
-
 //----------------------------------------------------- Attributs protégés
     char moyenTransport[50];
-    // Attribut protégé représentant le moyen de transport du trajet
     
 };
-
-//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
-
 #endif // TRAJETSIMPLE_H
-
-
-

@@ -1,29 +1,28 @@
-/*************************************************************************
-                                   Trajet
-                             -------------------
+/*********************************************************************************************************************************************
+                                Trajet  -  Classe Ancêtre Abstraite de tous les Trajets
+                                                -------------------
     début                : 22/11/2023
-    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
-    e-mail               : youssef.chaouki@insa-lyon.fr
-                           djalil.chikhi@insa-lyon.fr
-                           riad.dalaoui@insa-lyon.fr
-                           rayan.hanader@insa-lyon.fr
-*************************************************************************/
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
 
-//--------------------------------------------------- Interfaces utilisées
+//------------------------------------------------------------- Description
+/* Rôle de la classe <Trajet> :
+   Classe Ancêtre Abstraite de tous les Trajets, elle nous permet de définir
+   les méthodes et attributs communs aux Trajets Simples et Composes, telles que l'affichage
+   ou les villes de départ et d'arrivée.
 
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
+   Attributs de la classe <Trajet> :
+   Un Trajet est définit par une villeDepart et une villeArrivee, deux chaines de caractères.
+*/
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
-//
-// La classe Trajet permet de créer et de manipuler des trajets
-//------------------------------------------------------------------------
+
 
 class Trajet
 {
@@ -49,10 +48,11 @@ public:
     virtual bool operator==(const Trajet& autre) const;
     // Surcharge de l'opérateur d'égalité pour comparer deux trajets
 
+
 //-------------------------------------------- Constructeurs - destructeur
 
     Trajet ( const Trajet& autre ) ;
-    // Constructeur de copie
+    // Constructeur par copie
 
 
     Trajet( );
@@ -61,19 +61,13 @@ public:
     virtual ~Trajet ( );
     // Destructeur
 
+
 //------------------------------------------------------------------ PRIVE
-
 protected:
-//----------------------------------------------------- Méthodes protégées
-
 //----------------------------------------------------- Attributs protégés
     char villeDepart[50];
     char villeArrivee[50];
-    // Attributs protégés représentant les villes de départ et d'arrivée du trajet
     
 };
 
 #endif // TRAJET_H
-
-
-

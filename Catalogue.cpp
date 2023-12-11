@@ -174,6 +174,21 @@ void Catalogue::RechercheAvancee(const char* VilleA, const char* VilleB) {
     
     cout << endl << "Recherche avancee en cours..." << endl << endl;
 
+
+    // Cas où le depart ou l'arrivée n'existent pas dans le catalogue
+    bool Exist = false;
+    for(int i= 0; i<nbrt; i++){
+        Trajet * t = this->tabDynamique.GetTrajet(i);
+        if (!strcmp(t->GetArrivee(), VilleB) || !strcmp(t->GetDepart(), VilleA)) {
+            Exist = true;
+        }
+    }
+    if (!Exist) {
+        cout << endl << "Aucun trajet ne relie " << VilleA << " et " << VilleB << " car au moins une de ces villes n'existe pas dans le catalogue." << endl << endl;
+        return;
+    }
+
+
     // Parcours tous les trajets pour stocker les trajets de départ
     TableauDynamique Departs(nbrt);
     int departsCount = 0;

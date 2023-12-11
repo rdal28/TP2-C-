@@ -1,40 +1,33 @@
-/*************************************************************************
-                                TableauDynamique
-                             -------------------
+/*********************************************************************************************************************************************
+                        TableauDynamique  -  Classe gestionnaire d'un tableau dynamique de trajets
+                                                -------------------
     début                : 22/11/2023
-    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
-    e-mail               : youssef.chaouki@insa-lyon.fr
-                           djalil.chikhi@insa-lyon.fr
-                           riad.dalaoui@insa-lyon.fr
-                           rayan.hanader@insa-lyon.fr
-*************************************************************************/
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Réalisation de la classe <TableauDynamique> (fichier TableauDynamique.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
-
+#include <cstring>
 #include <iostream>
 using namespace std;
-#include <cstring>
-
 //------------------------------------------------------ Include personnel
 #include "TableauDynamique.h"
 #include "Trajet.h"
 
-//------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
-
 //----------------------------------------------------- Méthodes publiques
 
 void TableauDynamique::Ajouter ( Trajet * ptTrajet )
 {
-    // Ajoute un trajet au tableau dynamique
+    // Réallocation si le tableau est plein
     if(this->nbTrajetsCourant == this->nbTrajetsMax-1)
     {   
-        // Si le tableau est plein, on double sa taille
+        
         this->nbTrajetsMax *= 2;
         Trajet ** newTab = new Trajet*[this->nbTrajetsMax];
         memcpy(newTab, this->tabDynamique, this->nbTrajetsMax*sizeof(Trajet*));
@@ -42,52 +35,49 @@ void TableauDynamique::Ajouter ( Trajet * ptTrajet )
         this->tabDynamique = newTab;
     }
 
-    // Ajoute le trajet au tableau et incrémente le nombre de trajets
+    // Ajout du trajet au tableau et incrémentation du nombre de trajets
     this->tabDynamique[this->nbTrajetsCourant] = ptTrajet;
     this->nbTrajetsCourant++;
 
-} //----- Fin de Méthode
+} //----- Fin de Ajouter
 
 
 Trajet* TableauDynamique::GetTrajet ( int i ) const
 {   
-    // Renvoie le trajet à l'indice i dans le tableau dynamique
     return this->tabDynamique[i];
-}
+} //----- Fin de GetTrajet
 
 
 int TableauDynamique::GetNbTrajetsCourant ( ) const 
 {   
-    // Renvoie le nombre de trajets actuellement dans le tableau dynamique
     return this->nbTrajetsCourant;
-}
+} //----- Fin de GetNbTrajetsCourant
 
 
 void TableauDynamique::Supprimer(int i)
 {   
-    // Supprime le trajet à l'indice i dans le tableau dynamique
+    // Cas d'erreur
     if(i < 0 || i > this->nbTrajetsCourant)
     {
         return;
+        // cout << "Erreur : l'indice " << i << " pour la suppression n'est pas valide" << endl;
     }
     delete this->tabDynamique[i];
     this->tabDynamique[i] = nullptr;
     this->nbTrajetsCourant--;
-}
+} //----- Fin de Supprimer
 
 
 void TableauDynamique::SetNbTrajetsCourant(int i)
 {
-    // Modifie le nombre de trajets actuellement dans le tableau dynamique
     this->nbTrajetsCourant = i;
-}
+} //----- Fin de SetNbTrajetsCourant
 
 
 void TableauDynamique::Modif(int i, Trajet* t)
 {
-    // Modifie le trajet à l'indice i dans le tableau dynamique
     this->tabDynamique[i] = t;
-}
+} //----- Fin de Modif
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -95,32 +85,28 @@ void TableauDynamique::Modif(int i, Trajet* t)
 TableauDynamique::TableauDynamique ( const TableauDynamique & autre )
 {
     #ifdef MAP
-        cout << "Appel au constructeur de copie de <TableauDynamique>" << endl;
+        cout << "Appel au constructeur par copie de <TableauDynamique>" << endl;
     #endif
 
-    // Copie des attributs de l'autre tableau
     this->nbTrajetsCourant = autre.nbTrajetsCourant;
     this->nbTrajetsMax = autre.nbTrajetsMax;
     this->tabDynamique = new Trajet*[this->nbTrajetsMax];
 
-    // Copie des trajets
     for (int i = 0; i < this->nbTrajetsCourant; ++i) {
         this->tabDynamique[i] = new Trajet(*autre.tabDynamique[i]);
     }
-}
+} //----- Fin de TableauDynamique (constructeur par copie)
 
 
 TableauDynamique::TableauDynamique()
 {
-    // Constructeur par défaut
     this->nbTrajetsCourant = 0;
     this->nbTrajetsMax = 10;
     this->tabDynamique = new Trajet*[this->nbTrajetsMax];
-}
+} //----- Fin de TableauDynamique (constructeur par défaut)
 
 
 TableauDynamique::TableauDynamique(int tabSizeInit) 
- // Constructeur avec initialisation de la taille maximale du tableau
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TableauDynamique>" << endl;
@@ -130,7 +116,7 @@ this->nbTrajetsCourant = 0;
 this->nbTrajetsMax = tabSizeInit;
 this->tabDynamique = new Trajet*[this->nbTrajetsMax];
 
-} //----- Fin de Trajet
+} //----- Fin de TableauDynamique
 
 
 TableauDynamique::~TableauDynamique ( )
@@ -148,9 +134,3 @@ for(int i = 0; i < this->nbTrajetsCourant; i++)
 delete[] this->tabDynamique;
 
 } //----- Fin de ~TableauDynamique
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-

@@ -1,45 +1,34 @@
-/*************************************************************************
-                               TrajetSimple
-                             -------------------
+/*********************************************************************************************************************************************
+                                TrajetSimple  -  Classe définissant un trajet simple
+                                                -------------------
     début                : 22/11/2023
-    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
-    e-mail               : youssef.chaouki@insa-lyon.fr
-                           djalil.chikhi@insa-lyon.fr
-                           riad.dalaoui@insa-lyon.fr
-                           rayan.hanader@insa-lyon.fr
-*************************************************************************/
+    auteurs              : IF3105 (Rayan - Djalil) & IF3104 (Youssef - Riad)
+    e-mail               : rayan.hanader@insa-lyon.fr - djalil.chikhi@insa-lyon.fr - youssef.chaouki@insa-lyon.fr - riad.dalaoui@insa-lyon.fr
+    
+**********************************************************************************************************************************************/
 
 //---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
-
 #include <iostream>
 using namespace std;
 #include <cstring>
-
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
 #include "Trajet.h"
-
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 
 const char * TrajetSimple::GetTransport () const
 {
-    return this->moyenTransport; //Retourne le mode de transport du trajet
-}
-
+    return this->moyenTransport; 
+} //----- Fin de GetTransport
 
 void TrajetSimple::Afficher (  ) const
-// Méthode affichage d'un trajet simple
 {   
     cout << " " << this->villeDepart << " ------ " << "( " << this->moyenTransport << " )"<< " ------> " <<this->villeArrivee << endl;
-} //----- Fin de la méthode Afficher
+} //----- Fin de Afficher
 
 
 bool TrajetSimple::operator==(const Trajet& autre) const {
@@ -56,7 +45,7 @@ bool TrajetSimple::operator==(const Trajet& autre) const {
     }
 
     return true;
-} //------ Fin de surchage d'opérateur ==
+} //----- Fin de operator==
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -102,9 +91,3 @@ TrajetSimple::~TrajetSimple ( )
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
 } //----- Fin de ~TrajetSimple
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
