@@ -38,6 +38,8 @@ public:
     // Méthode virtuelle constante pour obtenir le moyen de transport du trajet
 
     virtual int GetNbEscales (  ) const;
+    // Méthode virtuelle constante pour obtenir le nombre d'escales dans le trajet
+    
     const char* GetArrivee () const;
     // Méthode constante pour obtenir la ville d'arrivée du trajet
 

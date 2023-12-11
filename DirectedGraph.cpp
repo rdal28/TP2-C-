@@ -34,7 +34,7 @@ void DirectedGraph::dfsRecursive(const std::string& start, const std::string& ta
     path.push_back(start);
 
     if (start == target) {
-        std::cout << "Pour partir de " << path[0] << " et arriver à " << target << " vous pouvez prendre : ";
+        std::cout << "Pour partir de " << path[0] << " et arriver a " << target << " vous pouvez prendre : ";
         for (size_t i = 0; i < path.size(); ++i) {
             std::cout << path[i];
             if (i < edgeLabels.size()) {
