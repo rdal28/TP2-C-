@@ -55,12 +55,11 @@ DirectedGraph* Catalogue::toGraph() {
     DirectedGraph* graph = new DirectedGraph();
     for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
         Trajet* trajet = tabDynamique.GetTrajet(i);
-        if(1){
-            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
+        cout << trajet->GetNbEscales() << endl;
+        if(trajet->GetNbEscales() > 0){
+            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), "trajet compose");
         }else{
-            for(int sousTrajet = 0; sousTrajet < trajet->GetNbEscales(); sousTrajet++){
-                graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
-            }
+            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
         }
         
     }
