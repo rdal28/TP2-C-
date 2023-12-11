@@ -29,7 +29,6 @@ void TrajetCompose::Afficher (  ) const
 // Algorithme :
 //
 {   
-    cout << "Entree dans Afficher de TrajetCompose" << endl;
     const int j = this->GetTableau().GetNbTrajetsCourant();
 
     for(int i = 0; i < j; i++)

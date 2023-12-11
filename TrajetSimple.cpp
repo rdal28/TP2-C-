@@ -35,7 +35,6 @@ void TrajetSimple::Afficher (  ) const
 // Algorithme :
 //
 {   
-    cout << "Entree dans Afficher de TrajetSimple" << endl;
     cout << " " << this->villeDepart << " ------ " << "( " << this->moyenTransport << " )"<< " ------> " <<this->villeArrivee << endl;
 } //----- Fin de Méthode
 
