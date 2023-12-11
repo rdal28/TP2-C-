@@ -46,11 +46,11 @@ public:
     void RechercheSimple (char*, char*);
     // Effectue une recherche simple de trajets entre VilleA et VilleB
 
-    void BruteForceSearch (const char* VilleA, const char* VilleB, TableauDynamique& currentPath, int pathLength, bool& found);
-    // Effectue une recherche brute-force de trajets entre VilleA et VilleB
+    void RechercheBruteForce (const char* VilleA, const char* VilleB, TableauDynamique& cheminCourant, int tailleChemin, bool& found);
 
-    void UneCombinaison(Trajet* startTrajet,const char* VilleA, const char* VilleB , TableauDynamique& currentPath);
-    // Recherche récursive d'une combinaison de trajets entre VilleA et VilleB
+
+    void UneCombinaison(Trajet* startTrajet,const char* VilleA, const char* VilleB , TableauDynamique& cheminCourant);
+
 
     void RechercheAvancee (const char*, const char*);
     // Recherche avancée de trajets entre VilleA et VilleB

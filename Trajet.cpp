@@ -44,11 +44,13 @@ const char * Trajet::GetDepart () const
     return this->villeDepart;
 }
 
+
 const char * Trajet::GetArrivee () const
 // Méthode constante pour obtenir la ville d'arrivée du trajet
 {   
     return this->villeArrivee;
 }
+
 
 void Trajet::Afficher (  ) const 
 // Méthode virtuelle pure pour afficher les détails du trajet
@@ -59,10 +61,11 @@ void Trajet::Afficher (  ) const
 
 } //----- Fin de la méthode Afficher
 
- bool Trajet::operator==(const Trajet& autre) const
- { 
-     // Méthode virtuelle constante pour comparer deux trajets (implémentée dans les classes dérivées)
- }
+bool Trajet::operator==(const Trajet& autre) const
+{ 
+    // Méthode virtuelle constante pour comparer deux trajets (implémentée dans les classes dérivées)
+}
+
 
 
 
@@ -72,18 +75,17 @@ void Trajet::Afficher (  ) const
 Trajet::Trajet ( const Trajet& autre)
 // Constructeur de copie de Trajet
 {
-    #ifdef MAP
+#ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
-    #endif
-
+#endif
 } //----- Fin de Trajet (constructeur de copie)
+
 
 Trajet::Trajet() 
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-
 } //----- Fin de Trajet
 
 

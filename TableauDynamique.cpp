@@ -55,18 +55,19 @@ Trajet* TableauDynamique::GetTrajet ( int i ) const
     return this->tabDynamique[i];
 }
 
+
 int TableauDynamique::GetNbTrajetsCourant ( ) const 
 {   
     // Renvoie le nombre de trajets actuellement dans le tableau dynamique
     return this->nbTrajetsCourant;
 }
 
+
 void TableauDynamique::Supprimer(int i)
 {   
     // Supprime le trajet à l'indice i dans le tableau dynamique
     if(i < 0 || i > this->nbTrajetsCourant)
     {
-        cout << "Erreur : indice invalide" << endl;
         return;
     }
     delete this->tabDynamique[i];
@@ -81,14 +82,15 @@ void TableauDynamique::SetNbTrajetsCourant(int i)
     this->nbTrajetsCourant = i;
 }
 
+
 void TableauDynamique::Modif(int i, Trajet* t)
 {
     // Modifie le trajet à l'indice i dans le tableau dynamique
     this->tabDynamique[i] = t;
 }
 
-//-------------------------------------------- Constructeurs - destructeur
 
+//-------------------------------------------- Constructeurs - destructeur
 
 TableauDynamique::TableauDynamique ( const TableauDynamique & autre )
 {
@@ -96,7 +98,7 @@ TableauDynamique::TableauDynamique ( const TableauDynamique & autre )
         cout << "Appel au constructeur de copie de <TableauDynamique>" << endl;
     #endif
 
-    // Copie des attributs de l'autre objet
+    // Copie des attributs de l'autre tableau
     this->nbTrajetsCourant = autre.nbTrajetsCourant;
     this->nbTrajetsMax = autre.nbTrajetsMax;
     this->tabDynamique = new Trajet*[this->nbTrajetsMax];
@@ -106,6 +108,8 @@ TableauDynamique::TableauDynamique ( const TableauDynamique & autre )
         this->tabDynamique[i] = new Trajet(*autre.tabDynamique[i]);
     }
 }
+
+
 TableauDynamique::TableauDynamique()
 {
     // Constructeur par défaut
@@ -113,6 +117,7 @@ TableauDynamique::TableauDynamique()
     this->nbTrajetsMax = 10;
     this->tabDynamique = new Trajet*[this->nbTrajetsMax];
 }
+
 
 TableauDynamique::TableauDynamique(int tabSizeInit) 
  // Constructeur avec initialisation de la taille maximale du tableau
@@ -135,19 +140,13 @@ TableauDynamique::~TableauDynamique ( )
     cout << "Appel au destructeur de <TableauDynamique>" << endl;
 #endif
 
-cout << "Destruction du tableau dynamique" << endl;
-
 for(int i = 0; i < this->nbTrajetsCourant; i++)
 {
     delete this->tabDynamique[i];
 }
 
-cout << "Trajets détruits" << endl;
-cout << "Destruction de l'attribut : " << endl;
 delete[] this->tabDynamique;
-cout << "Attribut détruit" << endl;
 
-cout << "Tableau dynamique détruit" << endl;
 } //----- Fin de ~TableauDynamique
 
 
