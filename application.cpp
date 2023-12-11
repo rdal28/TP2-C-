@@ -23,8 +23,11 @@ int main()
         cin >> choix;
         cout << endl;
 
-        if (choix !=1 && choix !=2 && choix !=3 && choix !=4)
-                    cout << endl << "Veuillez choisir un chiffre entre 1 et 4" << endl << endl;
+        if (choix !=1 && choix !=2 && choix !=3 && choix !=4){
+            cout << endl << "Veuillez choisir un chiffre entre 1 et 4" << endl << endl;
+            cin >> choix;
+            cout << endl;
+        }
 
         switch (choix)
         {
@@ -68,23 +71,54 @@ int main()
             }
 
             case 3 :
-            {
-                cout << "Veuillez saisir la ville dont vous voulez partir :" << endl;
-                char villeDepart[50], villeArrivee[50];
-                cin >> villeDepart;
-                cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
-                cin >> villeArrivee;
-                
-                catalogue.RechercheAvancee(villeDepart, villeArrivee);
+            {   
+                cout << "Veuillez saisir :" << endl << endl << "\t 1 pour une recherche simple" << endl
+                << "\t 2 pour une recherche avancee" << endl << "\t 3 pour revenir au menu precedent" << endl << endl;
+                int choixrecherche;
+                cin >> choixrecherche;
 
-                cout << endl << endl << endl;
+                
+                
+                if (choixrecherche == 1)
+                {
+                    cout << "Veuillez saisir la ville dont vous voulez partir :" << endl;
+                    char villeDepart[50], villeArrivee[50];
+                    cin >> villeDepart;
+                    cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
+                    cin >> villeArrivee;
+                    
+                    catalogue.RechercheSimple(villeDepart, villeArrivee);
+
+                    cout << endl << endl << endl;
+                    break;
+                }
+                else if (choixrecherche == 2)
+                {
+                    cout << "Veuillez saisir la ville dont vous voulez partir :" << endl;
+                    char villeDepart[50], villeArrivee[50];
+                    cin >> villeDepart;
+                    cout << endl << "Veuillez saisir la ville d'arrivee :" << endl;
+                    cin >> villeArrivee;
+                    
+                    catalogue.RechercheAvancee(villeDepart, villeArrivee);
+
+                    cout << endl << endl << endl;
+                    break;
+                }
+
+                else if (choixrecherche==3)
+                    break;
+
+                else 
+                {   
+                    cout << endl << "Veuillez choisir un chiffre entre 1 et 3" << endl << endl;
+                }
                 break;
             }
         }
     }
 
     cout << "Merci d'avoir consulte notre application de gestion de trajets !" << endl;
-
 
     return 0;
 }

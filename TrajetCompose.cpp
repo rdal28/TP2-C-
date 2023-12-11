@@ -117,7 +117,7 @@ TrajetCompose::TrajetCompose ( )
         cout << "Appel au constructeur de <TrajetCompose>" << endl;
     #endif
     char final_end[50];
-    cout << endl << "Quelle est la ville d'arrivée finale de ce trajet" << endl;
+    cout << endl << "Quelle est la ville d'arrivee finale de ce trajet" << endl;
     cin >> final_end;
     this->nbEscales = 0;
     char start[50];
@@ -126,7 +126,7 @@ TrajetCompose::TrajetCompose ( )
     while(strcmp(end,final_end))
     {   
         if(this->nbEscales==0){
-            cout << endl << "Veuillez saisir la ville de depart du trajet composé:" << endl;
+            cout << endl << "Veuillez saisir la ville de depart du trajet compose:" << endl;
             cin >> start;
             cout << endl << "Veuillez saisir la ville suivante:" << endl;
             cin >> end;
