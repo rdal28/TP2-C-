@@ -1,9 +1,12 @@
 /*************************************************************************
-                           TrajetCompose  -  description
+                               TrajetCompose
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/11/2023
+    copyright            : (C) 2023 par CHAOUKI Youssef, CHIKHI Djalil, DALAOUI Riad, HANADER Rayan
+    e-mail               : youssef.chaouki@insa-lyon.fr
+                           djalil.chikhi@insa-lyon.fr
+                           riad.dalaoui@insa-lyon.fr
+                           rayan.hanader@insa-lyon.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ------------
@@ -24,9 +27,9 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+
 void TrajetCompose::Afficher (  ) const
-// Algorithme :
-//
+// Affiche les détails du trajet composé en parcourant le tableau dynamique de trajets
 {   
     const int j = this->GetTableau().GetNbTrajetsCourant();
 
@@ -47,20 +50,22 @@ void TrajetCompose::Afficher (  ) const
 
 
 const TableauDynamique& TrajetCompose::GetTableau (  ) const
-// Algorithme :
-//
+// Renvoie le tableau dynamique de trajets associé à ce trajet composé
 {   
     return this->tabDynamique;
 } //----- Fin de Méthode
 
 
 int TrajetCompose::GetNbEscales (  ) const
+ // Renvoie le nombre d'escales dans le trajet composé
 {
     return this->nbEscales;
 } //----- Fin de Méthode
 
 
-const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA, const char* VilleB) {
+const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA, const char* VilleB) 
+ // Recherche un trajet simple dans le trajet composé en fonction des villes de départ et d'arrivée
+{
         for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); i++) {
             TrajetSimple* trajet = (TrajetSimple*) tabDynamique.GetTrajet(i);
             if (!strcmp(trajet->GetArrivee(), VilleB) && !strcmp(trajet->GetDepart(), VilleA)) {
@@ -71,7 +76,9 @@ const TrajetSimple* TrajetCompose::RechercheDansTrajetCompose(const char* VilleA
 }
 
 
-bool TrajetCompose::operator==(const Trajet& autre) const {
+bool TrajetCompose::operator==(const Trajet& autre) const 
+// Surcharge de l'opérateur d'égalité pour comparer deux trajets composés
+{
     const TrajetCompose* autreCompose = dynamic_cast<const TrajetCompose*>(&autre);
     if (!autreCompose) {
         return false;
@@ -97,8 +104,10 @@ bool TrajetCompose::operator==(const Trajet& autre) const {
 //-------------------------------------------- Constructeurs - destructeur
 
 TrajetCompose::TrajetCompose(const TrajetCompose& autre) : Trajet(autre)
-{
-    cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
+{   
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
+    #endif
     strcpy(this->villeDepart, autre.GetDepart());
     strcpy(this->villeArrivee, autre.GetArrivee());
     this->nbEscales = autre.GetNbEscales();

@@ -26,6 +26,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void Catalogue::Afficher (  )
 {   
+    // Affiche les trajets du catalogue
     int nbTrajetsCourant = this->tabDynamique.GetNbTrajetsCourant();
 
     if (nbTrajetsCourant == 0)
@@ -45,16 +46,31 @@ void Catalogue::Afficher (  )
 
 void Catalogue::Ajouter ( Trajet * ptTrajet )
 {
-
+    // Ajoute un trajet au catalogue
     this->tabDynamique.Ajouter(ptTrajet);
 
 } //----- Fin de Méthode
 
+DirectedGraph* Catalogue::toGraph() {
+    DirectedGraph* graph = new DirectedGraph();
+    for (int i = 0; i < tabDynamique.GetNbTrajetsCourant(); ++i) {
+        Trajet* trajet = tabDynamique.GetTrajet(i);
+        if(1){
+            graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
+        }else{
+            for(int sousTrajet = 0; sousTrajet < trajet->GetNbEscales(); sousTrajet++){
+                graph->addEdge(trajet->GetDepart(), trajet->GetArrivee(), trajet->GetTransport());
+            }
+        }
+        
+    }
+    return graph;
+}
+
 
 void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 {
-
-    
+    // Effectue une recherche simple de trajets entre VilleA et VilleB
     int nbrt = this->tabDynamique.GetNbTrajetsCourant();
     if(nbrt == 0)
     {
