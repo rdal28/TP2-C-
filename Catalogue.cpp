@@ -27,6 +27,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void Catalogue::Afficher (  )
 {   
+    // Affiche les trajets du catalogue
     int nbTrajetsCourant = this->tabDynamique.GetNbTrajetsCourant();
 
     if (nbTrajetsCourant == 0)
@@ -45,15 +46,14 @@ void Catalogue::Afficher (  )
 
 void Catalogue::Ajouter ( Trajet * ptTrajet )
 {
-
+    // Ajoute un trajet au catalogue
     this->tabDynamique.Ajouter(ptTrajet);
 
 } //----- Fin de Méthode
 
 void Catalogue::RechercheSimple (char* VilleA, char* VilleB)
 {
-
-    
+    // Effectue une recherche simple de trajets entre VilleA et VilleB
     int nbrt = this->tabDynamique.GetNbTrajetsCourant();
     bool trajetTrouve = false;
 
@@ -119,6 +119,8 @@ void Catalogue::BruteForceSearch(const char* VilleA, const char* VilleB, Tableau
 
 
 void Catalogue::UneCombinaison(Trajet* startTrajet, const char* VilleA, const char* VilleB, TableauDynamique& currentPath){
+    
+    // Recherche récursive d'une combinaison de trajets entre VilleA et VilleB
     
     cout << "Entree dans UneCombinaison" << endl << endl;
 
